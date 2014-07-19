@@ -45,7 +45,7 @@
 <meta property="og:type" content="website">
 <meta property="og:app_id" content="132269043633579">
 <meta property="og:url" content="http://<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
-<meta property="og:image" content="http://<?php echo $_SERVER['HTTP_HOST'] . url('images/logotype-paypal.jpg'); ?>">
+<meta property="og:image" content="http://<?php echo $_SERVER['HTTP_HOST'] . url('images/share-image.png'); ?>">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:description" content="Visa väderleksrapporten för den här platsen">
 
