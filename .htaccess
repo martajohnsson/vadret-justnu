@@ -1,0 +1,108 @@
+# INFORMATION: Administratörens namn och e-postadress
+SetEnv SITE_WEBMASTER "Erik Edgren"
+SetEnv SITE_WEBMASTER_URI nhagyavi@gmail.com
+
+# KONFIGURATION: Standard-språk
+AddDefaultCharset UTF-8
+DefaultLanguage sv-SE
+
+# KONFIGURATION: Alternativ
+Options -Indexes +FollowSymLinks -MultiViews
+
+# SKYDDA: Visning av filer
+IndexIgnore */*
+
+# SKYDDA: .htaccess-filen
+<Files .htaccess>
+	order allow,deny
+	deny from all
+</Files>
+
+
+
+# --------------------------------------- #
+
+
+
+<IfModule !mod_rewrite.c>
+
+	# FELMEDDELANDEN
+	ErrorDocument 404 /critical-error.php?e=mod_rewrite
+
+</IfModule>
+
+
+
+<IfModule mod_rewrite.c>
+
+	# FÖRSTAHANDS-FIL
+	DirectoryIndex index.php /index.php
+
+	# FELMEDDELANDEN
+	ErrorDocument 404 /index.php?p=error/404
+	ErrorDocument 500 /index.php?p=error/500
+
+
+	# REWRITE ENGINE
+	RewriteEngine On
+	RewriteBase /
+
+	# REWRITE: Kräv enbart GET och POST
+	RewriteCond %{REQUEST_METHOD} !^(GET|POST)
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+
+	# RewriteCond %{HTTPS} != on [NC]
+	# RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+
+
+	# --------------------------------------- #
+
+
+
+	# SIDOR
+	RewriteRule ^$    index.php [L]
+	RewriteRule ^contact-us$    index.php?p=contact-us [L]
+	RewriteRule ^about$    index.php?p=about [L]
+	RewriteRule ^faq$    index.php?p=faq [L]
+	RewriteRule ^manual$    index.php?p=manual [L]
+	RewriteRule ^history$    index.php?p=history [L]
+	RewriteRule ^history/([\d\.\-]+),([\d\.\-]+)$    index.php?p=history/$1,$2 [L]
+	RewriteRule ^([\d\.\-]+),([\d\.\-]+)$    index.php?p=weather/manual/$1,$2 [L]
+	RewriteRule ^([\d\.\-]+),([\d\.\-]+)/images$    index.php?p=weather/images/$1,$2 [L]
+	RewriteRule ^start-with:([\d\.\-]+),([\d\.\-]+)$    index.php?p=weather/manual/$1,$2/start [L]
+	RewriteRule ^dont-save:([\d\.\-]+),([\d\.\-]+)$    index.php?p=weather/manual/$1,$2/no-log [L]
+	RewriteRule ^dont-save:([\d\.\-]+),([\d\.\-]+)/images$    index.php?p=weather/images/$1,$2/no-log [L]
+
+
+	# -------- -------- #
+
+
+	RewriteRule ^get/error/([\d]+)$    pages/general-error.php?e=$1 [L]
+	RewriteRule ^get/contact-us$    pages/general-contact.php [L]
+	RewriteRule ^get/faq$    pages/general-faq.php [L]
+	RewriteRule ^get/about$    pages/general-about.php [L]
+	RewriteRule ^get/start$    pages/weather.php [L]
+	RewriteRule ^get/history$    pages/history-all.php [L]
+	RewriteRule ^get/history/([\d\.\-]+),([\d\.\-]+)$    pages/history-coordinates.php?lat=$1&lng=$2 [L]
+	RewriteRule ^get/manual$    pages/general-manual.php [L]
+	RewriteRule ^get/weather/manual/([\d\.\-]+),([\d\.\-]+)$    pages/weather.php?t=coordinates&lat=$1&lng=$2 [L]
+	RewriteRule ^get/weather/manual/([\d\.\-]+),([\d\.\-]+)/start$    pages/weather.php?t=coordinates&lat=$1&lng=$2 [L]
+	RewriteRule ^get/weather/manual/([\d\.\-]+),([\d\.\-]+)/no-log$    pages/weather.php?t=coordinates&lat=$1&lng=$2&nolog= [L]
+	RewriteRule ^get/weather/images/([\d\.\-]+),([\d\.\-]+)$    pages/weather-images.php?lat=$1&lng=$2 [L]
+	RewriteRule ^get/weather/images/([\d\.\-]+),([\d\.\-]+)/no-log$    pages/weather-images.php?lat=$1&lng=$2&nolog= [L]
+	RewriteRule ^get/weather/temperature/([\d\.\-]+),([\d\.\-]+)$    configurations/required/javascripts/gets/temperature.php?lat=$1&lng=$2 [L]
+
+	RewriteRule ^get/weather/gps/([\d\.\-]+),([\d\.\-]+)/([a-z\d\.]+)/([a-z\d\.]+)/([a-z\d\.]+)/([\d\.]+)/([\d]+)$    configurations/required/javascripts/gets/weather-data.php?t=gps&lat=$1&lng=$2&accuracy=$3&heading=$4&speed=$5&distance=$6&timestamp=$7 [L]
+	RewriteRule ^get/weather/gps-traveler/([\d\.\-]+),([\d\.\-]+)/([a-z\d\.]+)/([a-z\d\.]+)/([a-z\d\.]+)/([\d\.]+)/([\d]+)$    configurations/required/javascripts/gets/weather-data.php?t=gps-traveler&lat=$1&lng=$2&accuracy=$3&heading=$4&speed=$5&distance=$6&timestamp=$7 [L]
+	RewriteRule ^get/weather/coordinates/([\d\.\-]+),([\d\.\-]+)$    configurations/required/javascripts/gets/weather-data.php?t=coordinates&lat=$1&lng=$2 [L]
+	RewriteRule ^get/weather/coordinates/([\d\.\-]+),([\d\.\-]+)/no-log$    configurations/required/javascripts/gets/weather-data.php?t=coordinates&lat=$1&lng=$2&nolog= [L]
+	RewriteRule ^get/weather/chart/24-hours$    configurations/required/javascripts/gets/weather-24hour.php [L]
+	RewriteRule ^get/weather/database/insert/([\d\.\-]+),([\d\.\-]+)$    configurations/required/javascripts/gets/weather-database.php?lat=$1&lng=$2 [L]
+	RewriteRule ^get/weather/database/insert/([\d\.\-]+),([\d\.\-]+)/no-log$    configurations/required/javascripts/gets/weather-database.php?lat=$1&lng=$2&nolog= [L]
+	RewriteRule ^get/address/([\d\.\-]+),([\d\.\-]+)/([A-Za-z\d\040åäöÅÄÖ]+)/([\d\040]+)/([A-Za-z\d\040åäöÅÄÖ]+)/([A-Za-z\d\040åäöÅÄÖ]+)/([A-Za-z\d\040åäöÅÄÖ]+)/([A-Za-z\d\040åäöÅÄÖ]+)/([A-Za-z\d\040åäöÅÄÖ]+)$    configurations/required/javascripts/gets/address.php?lat=$1&lng=$2&ssn=$3&pc=$4&pt=$5&n=$6&ci=$7&cy=$8&cry=$9 [L]
+
+	RewriteRule ^form/send/email$    configurations/required/javascripts/forms/general-contact.php [L]
+
+</IfModule>

@@ -1,0 +1,1426 @@
+@media only screen and (max-width: 800px), only screen and (max-device-width: 800px) {
+
+
+	html {
+		min-height : 100%;
+		position : relative;
+		text-align : center;
+	}
+
+	body {
+		background-color : #ffffff;
+		color : #222222;
+		font-family : Roboto;
+		font-size : 12px;
+		margin : 0 auto 100px auto;
+		line-height : 20px;
+		overflow-y : scroll;
+		text-align : left;
+		width : 100%;
+	}
+
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+
+	a {
+		color : #126da6;
+		padding : 1px;
+		text-decoration : underline;
+	}
+
+
+	a.menu-link {
+		color : #222222;
+		padding : 22px 10px;
+		text-decoration : none;
+	}
+
+	a.menu-active-link {
+		color : #222222;
+		padding : 22px 10px;
+		text-decoration : none;
+	}
+
+
+	a.weather-menu-link {
+		color : #222222;
+		padding : 5px;
+		text-decoration : none;
+	}
+
+	.weather-menu-inactive {
+		color : #999999;
+		padding : 5px;
+	}
+
+
+	a.temperature-link {
+		color : #222222;
+		text-decoration : none;
+	}
+
+	a.footer-link {
+		color : #d1d1d1;
+		text-decoration : none;
+	}
+
+	a.faq-link {
+		color : #222222;
+		text-decoration : none;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	input {
+		background-color : #ffffff;
+		border : 1px solid #d1d1d1;
+		font-family : Roboto;
+		font-size : 12px;
+		outline : none;
+		padding : 6px;
+	}
+
+	input[disabled] {
+		border : 1px dashed #eaeaea;
+		color : #999999;
+		cursor : not-allowed;
+	}
+
+
+	textarea {
+		background-color : #ffffff;
+		border-top : 1px solid #c0c0c0;
+		border-right : 1px solid #d9d9d9;
+		border-bottom : 1px solid #d9d9d9;
+		border-left : 1px solid #d9d9d9;
+		font-family : Roboto;
+		font-size : 12px;
+		outline : none;
+		padding : 6px;
+		resize : none;
+	}
+
+	textarea[disabled] {
+		border : 1px dashed #eaeaea;
+		color : #999999;
+		cursor : not-allowed;
+	}
+
+
+	input:focus, textarea:focus {
+		border : 1px solid #b08788;
+		outline : none;
+	}
+
+
+	hr {
+		border-top : 1px dashed #eaeaea;
+		border-right : 0;
+		border-bottom : 0;
+		border-left : 0;
+		margin : 25px auto;
+	}
+
+
+	label, img, a {
+		font-weight : normal;
+
+		user-select : none;
+		-moz-user-select : none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-user-drag : none;
+	}
+
+	label.for-thecheckbox,
+	label.for-theradio {
+		cursor : pointer;
+		font-weight : normal;
+		padding-left : 3px;
+	}
+
+	noscript {
+		background-color : #fafafa;
+		left : 0;
+		height : 100%;
+		position : fixed;
+		top : 0;
+		width : 100%;
+		z-index : 1050;
+	}
+
+	ul {
+		list-style : none;
+		padding : 10px 0 10px 40px;
+	}
+
+	li:before {
+		content : '•';
+		display : inline-block;
+		margin-left : -20px;
+		width : 15px;
+	}
+
+
+
+	input[name="textfield-latitude"],
+	input[name="textfield-longitude"] {
+		width : 80px;
+	}
+
+	input[name="textfield-coordinates"] {
+		width : 160px;
+	}
+
+
+	input[name="textfield-firstname"] {
+		width : 38%;
+	}
+
+	input[name="textfield-familyname"] {
+		width : 50%;
+	}
+
+	input[name="textfield-email"] {
+		width : 95%;
+	}
+
+	input[name="textfield-subject"] {
+		width : 95%;
+	}
+
+
+	textarea[name="textarea-message"] {
+		height : 100px;
+		width : 95%;
+	}
+
+
+	input[type="search"] {
+		width : 400px;
+	}
+
+	input[type="search"]::-webkit-search-cancel-button {
+		background-image : url(../../../images/icons/cross.png);
+		background-repeat : no-repeat;
+		background-position : center center;
+		cursor : pointer;
+		height : 18px;
+		position : relative;
+		right : 0;
+		width : 18px;
+
+		-webkit-appearance : none;
+	}
+
+
+	input[type="submit"] {
+		background-color : #326e08;
+		border-radius : 2px;
+		color : #f9f9f9;
+		cursor : pointer;
+		padding : 8px 10px;
+	}
+
+	input[type="button"] {
+		background-color : #326e08;
+		border-radius : 5px;
+		color : #f9f9f9;
+		cursor : pointer;
+		padding : 13px 15px;
+	}
+
+	input[type="submit"]:disabled,
+	input[type="button"]:disabled {
+		cursor : not-allowed;
+	}
+
+
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		cursor : pointer;
+		margin-top : 1px;
+		vertical-align : middle;
+	}
+
+	input[type="checkbox"][disabled] {
+		cursor : not-allowed;
+		vertical-align : top;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	.overlay {
+		background-color : rgba(255, 255, 255, 0.8);
+		background-image : url(../../../images/backgrounds/lined.png);
+		display : none;
+		left : 0;
+		height : 100%;
+		overflow-y : scroll;
+		position : fixed;
+		top : 0;
+		width : 100%;
+		z-index : 20000;
+	}
+
+	.overlay-view {
+		display : none;
+		margin-bottom : 100px;
+		margin-left : 0;
+		position : absolute;
+		top : 80px;
+		z-index : 25000;
+	}
+
+	.overlay-content {
+		background-color : #ffffff;
+		border : 1px solid #eaeaea;
+		padding : 20px 25px;
+		text-align : left;
+		width : 650px;
+		z-index : 25000;
+	}
+
+	.overlay-close {
+		background-color : #ffffff;
+		background-image : url(../../../images/icons/color-18/cross.png);
+		background-position : center center;
+		background-repeat : no-repeat;
+		border-radius : 50px;
+		cursor : pointer;
+		float : right;
+		margin-top : -10px;
+		margin-right : -10px;
+		height : 50px;
+		position : relative;
+		width : 50px;
+		z-index : 25000;
+	}
+
+
+	.loading {
+		font-size : 12px;
+		padding : 20px 0;
+		text-align : center;
+	}
+
+	.error-gps {
+		display : none;
+		padding-bottom : 40px;
+	}
+
+	.no-script {
+		margin : 100px auto 0 auto;
+		text-align : center;
+		width : 500px;
+	}
+
+
+
+	.logotype {
+		background-color : #222222;
+		background-image : url(../../../images/logotype-pattern.png);
+		/* border : 1px solid #eaeaea;
+		border-top : 0; */
+		border-bottom-right-radius : 2px;
+		border-bottom-left-radius : 2px;
+		box-shadow : 0 0 7px rgba(0, 0, 0, 0.5);
+		cursor : pointer;
+		height : 55px;
+		position : fixed;
+		width : 848px;
+		z-index : 15000;
+	}
+
+	.menu {
+		border-bottom : 1px dashed #eaeaea;
+		padding : 10px 0;
+		text-align : center;
+	}
+
+	.menu-space {
+		display : inline-block;
+		padding : 0;
+	}
+
+	.menu-space-temperature {
+		display : inline-block;
+		padding : 0 0 0 15px;
+	}
+
+	.menu-image {
+		color : #666666;
+		cursor : pointer;
+		font-size : 28px;
+		padding : 15px 10px;
+		text-align : center;
+	}
+
+	.menu-image-temperature {
+		display : inline-block;
+		vertical-align : middle;
+	}
+
+	.menu-image-active {
+		color : #4e868a;
+	}
+
+	.menu-image-text {
+		display : none;
+		font-size : 14px;
+		padding-top : 10px;
+	}
+
+	.menu-image-text-temperature {
+		display : inline-block;
+		font-size : 14px;
+		padding-top : 0;
+		padding-bottom : 2px;
+		padding-left : 10px;
+		vertical-align : middle;
+	}
+
+	.menu-start {
+		border-right : 1px solid #eaeaea;
+		display : inline-block;
+		padding-right : 15px;
+	}
+
+	.menu-other {
+		display : inline-block;
+		padding : 0 15px;
+	}
+
+	.menu-determined {
+		border-left : 1px solid #eaeaea;
+		display : inline-block;
+		padding-left : 15px;
+	}
+
+	.menu-temperature {
+		color : #eaeaea;
+		cursor : default;
+	}
+
+	.menu-inactive {
+		color : #eaeaea;
+		cursor : default;
+	}
+
+	.content {
+		padding : 25px 0;
+	}
+
+	.content-paddingsides {
+		padding : 0 20px;
+	}
+
+	.footer {
+		background-color : #222222;
+		background-image : url(../../../images/backgrounds/noisy-net.png);
+		border-top : 3px solid #eaeaea;
+		bottom : 0;
+		color : #d1d1d1;
+		font-size : 12px;
+		left : 0;
+		padding : 20px 0;
+		position : absolute;
+		text-align : center;
+		width : 100%;
+	}
+
+	.footer-left {
+		border-right : 1px solid #373737;
+		display : inline-block;
+		padding-top : 0;
+	}
+
+	.footer-right {
+		border-right : 0;
+		display : inline-block;
+		padding : 0 0 0 15px;
+	}
+
+	.footer-sourcecode {
+		display : block;
+		padding-top : 5px;
+		padding-left : 0;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	.icon {
+		background-repeat : no-repeat;
+		display : inline-block;
+		height : 16px;
+		vertical-align : top;
+		width : 16px;
+	}
+
+	.icon-18 {
+		display : inline-block;
+		height : 18px;
+		vertical-align : top;
+		width : 18px;
+	}
+
+
+	.icon-browse {
+		background-image : url(../../../images/icons/color-18/binoculars.png);
+		background-repeat : no-repeat;
+		background-position : right center;
+		cursor : pointer;
+		margin-top : 8px;
+		padding-left : 10px;
+	}
+
+	.icon-location {
+		background-image : url(../../../images/icons/color-18/location.png);
+		background-repeat : no-repeat;
+		background-position : left center;
+		margin-top : 1px;
+		padding-right : 8px;
+	}
+
+	.icon-gear {
+		background-image : url(../../../images/icons/color-18/gear.png);
+		background-repeat : no-repeat;
+		background-position : left center;
+		margin-top : 1px;
+		padding-right : 8px;
+	}
+
+	.icon-satellite {
+		background-image : url(../../../images/icons/color-18/satellite.png);
+		background-repeat : no-repeat;
+		background-position : left center;
+		margin-top : 1px;
+		padding-right : 8px;
+	}
+
+	.icon-warning {
+		background-image : url(../../../images/icons/exclamation-small.png);
+		background-repeat : no-repeat;
+		background-position : left center;
+		margin-top : 3px;
+		padding-right : 3px;
+	}
+
+	.icon-delete-temperature {
+		background-color : #ffffff;
+		background-image : url(../../../images/icons/color-18/delete.png);
+		background-repeat : no-repeat;
+		background-position : left center;
+		border-radius : 20px;
+		display : none;
+		cursor : pointer;
+		margin-top : 13px;
+		margin-left : 2px;
+		position : absolute;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	.color-default {
+		color : #373737;
+	}
+
+	.color-grey {
+		color : #999999;
+	}
+
+	.color-grey-dark {
+		color : #666666;
+	}
+
+	.color-grey-light {
+		color : #d1d1d1;
+	}
+
+	.color-blue {
+		color : #235ea6;
+	}
+
+	.color-green {
+		color : #53c43d;
+	}
+
+	.color-red {
+		color : #c2473e;
+	}
+
+
+	.message {
+		padding : 20px 0;
+		text-align : center;
+	}
+
+
+	.chart {
+		height : 300px;
+		width : 100%;
+	}
+
+
+	#loading-map {
+		display : none;
+	}
+
+	#google-maps {
+		border : 0;
+		height : 100px;
+		position : relative;
+		width : 100%;
+		z-index : 50;
+	}
+
+	#google-maps-manual {
+		border : 0;
+		margin-top : 5px;
+		height : 200px;
+		position : relative;
+		width : 100%;
+		z-index : 50;
+	}
+
+	.google-maps-loader {
+		background-color : #f9f9f9;
+		border : 5px solid #ffffff;
+		font-size : 14px;
+		height : 100px;
+		position : absolute;
+		text-align : center;
+		width : 100%;
+		z-index : 100;
+	}
+
+	.google-maps-menu {
+		background-color : #dd4b39;
+		color : #f5f5f5;
+		cursor : pointer;
+		font-family : Tahoma;
+		font-size : 11px;
+		padding : 10px 15px;
+		text-align : center;
+		position : absolute;
+		z-index : 70;
+	}
+
+	.google-maps-menu-gps {
+		margin : 0 0 0 10px;
+	}
+
+	.google-maps-address {
+		background-color : #f9f9f9;
+		font-family : Tahoma;
+		font-size : 11px;
+		padding : 5px 0 10px 0;
+		text-align : center;
+	}
+
+	.google-maps-image {
+		background-color : #ffffff;
+		background-repeat : no-repeat;
+		background-position : center center;
+		cursor : pointer;
+		margin : 20px 0;
+		height : 150px;
+		width : 680px;
+	}
+
+
+	.google-maps-status {
+		cursor : default;
+		display : none;
+		margin : 0;
+		padding-top : 0;
+		position : fixed;
+		top : 0;
+		width : 100%;
+		z-index : 1000;
+
+		user-select : none;
+		-moz-user-select : none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-user-drag : none;
+	}
+
+	.google-maps-status-content {
+		background-color : #fafacf;
+		color : #70701f;
+		font-family : Tahoma;
+		font-size : 11px;
+		margin : 0;
+		padding : 10px 0;
+		text-align : center;
+		width : 100%;
+	}
+
+
+	.help-title {
+		border-bottom : 1px dashed #666666;
+		cursor : help;
+	}
+
+	.help-content {
+		border-bottom : 1px dashed #eaeaea;
+		padding-bottom : 20px;
+	}
+
+	.help-manage {
+		font-size : 12px;
+		padding-top : 20px;
+		padding-right : 20px;
+		text-align : right;
+	}
+
+
+	.history-search {
+		padding-bottom : 30px;
+	}
+
+	.history-search-icon {
+		display : inline-block;
+		font-size : 34px;
+		padding-right : 20px;
+	}
+
+	.history-search-field {
+		display : inline-block;
+		vertical-align : top;
+	}
+
+	.history-statistics {
+		background-color : #fafafa;
+		margin-bottom : 20px;
+		padding : 20px 30px;
+	}
+
+
+	.form-left {
+		display : block;
+		vertical-align : top;
+	}
+
+	.form-right {
+		display : block;
+		padding-left : 0;
+		vertical-align : top;
+	}
+
+	.form-body {
+		padding-bottom : 10px;
+	}
+
+	.form-body-message {
+		padding-top : 10px;
+	}
+
+	.form-label {
+		font-weight : bold;
+		padding-left : 9px;
+	}
+
+	.form-field {
+		padding-top : 3px;
+	}
+
+	.form-button {
+		padding-top : 10px;
+		padding-right : 20px;
+		text-align : right;
+	}
+
+
+	.cookies-left {
+		display : table-cell;
+		padding-right : 20px;
+		vertical-align : top;
+		width : 330px;
+	}
+
+	.cookies-right {
+		display : table-cell;
+		padding-left : 20px;
+		vertical-align : top;
+	}
+
+	.cookie {
+		border-left : 2px solid #eaeaea;
+		padding : 3px 15px;
+		width : 280px;
+	}
+
+	.cookie-exists {
+		border-left : 2px solid #d1d1d1;
+		padding : 3px 15px;
+		width : 280px;
+	}
+
+	.cookie-marginbottom {
+		margin-bottom : 20px;
+	}
+
+	.cookie-head {
+		font-weight : bold;
+	}
+
+	.cookie-status {
+		font-size : 11px;
+		margin-top : -4px;
+		padding-bottom : 5px;
+	}
+
+
+	.manual-position {
+		margin-top : 15px;
+		padding : 10px 15px 30px 15px;
+	}
+
+	.manual-position-options {
+		margin : 0 auto;
+		padding-bottom : 20px;
+		width : 100%;
+	}
+
+	.manual-position-options-left {
+		display : block;
+		vertical-align : top;
+	}
+
+	.manual-position-options-right {
+		display : block;
+		padding-top : 20px;
+		padding-left : 0;
+		vertical-align : top;
+	}
+
+	.manual-position-fields {
+		padding-left : 27px;
+	}
+
+	.manual-position-checkboxes {
+		padding-left : 22px;
+	}
+
+	#manual-position-information {
+		display : none;
+		padding-top : 20px;
+	}
+
+	.manual-position-information {
+		padding-bottom : 0;
+		padding-left : 26px;
+	}
+
+	.manual-position-button {
+		border-top : 1px solid #f5f5f5;
+		padding-top : 20px;
+		text-align : center;
+	}
+
+	.manual-position-coordinates {
+		display : none;
+		padding-left : 6px;
+	}
+
+
+	.faq-body {
+		padding : 5px 0;
+	}
+
+	.faq-question {
+		font-size : 14px;
+	}
+
+	.faq-answer {
+		border-left : 2px solid #dd4b39;
+		display : none;
+		margin-top : 5px;
+		margin-bottom : 15px;
+		margin-left : 2px;
+		padding : 0 0 1px 10px;
+	}
+
+	.faq-answer-last {
+		margin-bottom : 0;
+	}
+
+
+	.space {
+		color : #eaeaea;
+		cursor : default;
+		display : inline-block;
+		font-family : Verdana;
+
+		user-select : none;
+		-moz-user-select : none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-user-drag : none;
+	}
+
+	.space-tiny {
+		margin : 0 2px;
+	}
+
+	.space-small {
+		margin : 0 5px;
+	}
+
+	.space-medium {
+		margin : 0 10px;
+	}
+
+	.space-large {
+		margin : 0 20px;
+	}
+
+
+
+	.color-grey {
+		color : #999999;
+	}
+
+	.color-grey-dark {
+		color : #666666;
+	}
+
+	.color-grey-light {
+		color : #d1d1d1;
+	}
+
+	.color-orange {
+		color : #a16d37;
+	}
+
+	.color-blue {
+		color : #165794;
+	}
+
+	.color-red {
+		color : #941c16;
+	}
+
+	.color-green {
+		color : #299416;
+	}
+
+
+
+	.paddingtop-10 {
+		padding-top : 10px;
+	}
+
+
+	.paddingright-5 {
+		padding-right : 5px;
+	}
+
+
+	.paddingleft-5 {
+		padding-left : 5px;
+	}
+
+
+
+	.table {
+		display : table;
+	}
+
+	.table-row {
+		display : table-row;
+	}
+
+	.table-cell {
+		display : table-cell;
+		padding : 2px 0;
+	}
+
+	.table-cell-left {
+		border-right : 1px solid #f9f9f9;
+		display : table-cell;
+		color : #5c574a;
+		padding : 3px 10px 3px 0;
+		text-align : right;
+		width : 100px;
+	}
+
+	.table-cell-right {
+		display : table-cell;
+		padding : 3px 0 3px 10px;
+	}
+
+	.table-cell-head {
+		display : table-cell;
+		font-weight : bold;
+		padding-bottom : 5px;
+	}
+
+	.table-cell-button {
+		display : table-cell;
+		padding-top : 5px;
+		padding-right : 20px;
+		text-align : right;
+	}
+
+	.table-cell-textarea {
+		display : table-cell;
+		vertical-align : top;
+		padding-top : 8px;
+	}
+
+
+
+	.headline {
+		font-size : 18px;
+		padding-bottom : 10px;
+	}
+
+	.headline-mini {
+		font-weight : bold;
+		padding-bottom : 5px;
+	}
+
+
+
+	.text-bold {
+		font-weight : bold;
+	}
+
+	.text-centered {
+		text-align : center;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	.weather-menu {
+		background-color : #f8f8f8;
+		border : 0;
+		font-size : 12px;
+		padding : 10px 0;
+		text-align : center;
+	}
+
+	.weather-menu-left {
+		border-right : 0;
+		display : block;
+		padding-right : 0;
+	}
+
+	.weather-menu-right {
+		display : block;
+		padding-top : 3px;
+		padding-left : 0;
+	}
+
+	.weather-loading-temperature {
+		background-color : #f5f5f5;
+		padding : 110px 0;
+	}
+
+	.weather-loading-information {
+		border-bottom : 1px dashed #eaeaea;
+		padding : 40px 0;
+		text-align : center;
+	}
+
+	.weather-loading-data {
+		border-bottom : 1px solid #d1d1d1;
+		padding : 40px 0;
+		text-align : center;
+	}
+
+	.weather-loading-chart {
+		padding-top : 40px;
+		text-align : center;
+	}
+
+
+	.weather-status {
+		cursor : default;
+		position : absolute;
+		width : 100%;
+		z-index : 1000;
+
+		user-select : none;
+		-moz-user-select : none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-user-drag : none;
+	}
+
+	.weather-status-content {
+		background-color : #fafacf;
+		color : #70701f;
+		font-size : 12px;
+		margin : 0;
+		padding : 8px 0;
+		text-align : center;
+		width : 100%;
+	}
+
+	.weather-status-content-left {
+		border-right : 0;
+		color : #70701f;
+		display : block;
+		padding-right : 0;
+	}
+
+	.weather-status-content-right {
+		display : block;
+		padding-left : 0;
+	}
+
+
+	.weather-temperature {
+		cursor : default;
+		font-family : Cuprum;
+		font-size : 80px;
+		padding : 110px 0 80px 0;
+		position : relative;
+		text-align : center;
+		text-shadow : 1px 1px 1px rgba(0, 0, 0, 0.2);
+		z-index : 100;
+
+		user-select : none;
+		-moz-user-select : none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-user-drag : none;
+	}
+
+	.weather-temperature-background {
+		background-color : #f6f6f6;
+		background-image : url(../../../images/backgrounds/temperature-fog.jpg);
+		height : 210px;
+		opacity : .30;
+		position : absolute;
+		width : 100%;
+		z-index : 50;
+
+		filter : alpha(opacity=30);
+		filter : progid:DXImageTransform.Microsoft.Alpha(opacity=0.3);
+		-khtml-opacity : .30;
+		-moz-opacity : .30;
+		-ms-filter : "alpha(opacity=30)";
+	}
+
+
+
+	.weather-information {
+		background-image : url(../../../images/backgrounds/cream-pixels.png);
+		border-top : 1px solid #ffffff;
+		padding : 20px 0;
+		text-align : center;
+	}
+
+	.weather-information-left {
+		display : block;
+		padding-bottom : 25px;
+	}
+
+	.weather-information-right {
+		display : block;
+	}
+
+	.weather-information-block {
+		display : inline-block;
+		font-size : 38px;
+		vertical-align : top;
+		width : 130px;
+	}
+
+	.weather-information-block-text {
+		font-size : 14px;
+		padding-top : 14px;
+	}
+
+
+
+	.weather-data {
+		padding-top : 20px;
+	}
+
+	.weather-data-left {
+		display : block;
+		vertical-align : top;
+	}
+
+	.weather-data-right {
+		display : block;
+		padding-top : 15px;
+		vertical-align : top;
+	}
+
+	.weather-data-table-left {
+		width : 150px;
+	}
+
+	.weather-data-table-right {
+		width : 169px;
+	}
+
+
+
+	.weather-chart {
+		border-top : 1px dashed #d1d1d1;
+		padding-top : 40px;
+		padding-bottom : 20px;
+	}
+
+	.weather-chart-line {
+		height : 100px;
+		width : 680px;
+	}
+
+
+
+	.weather-information-table {
+		border-top : 1px solid #eaeaea;
+		padding-top : 20px;
+		padding-bottom : 40px;
+	}
+
+	.weather-information-table-left {
+		display : inline-block;
+		vertical-align : top;
+		width : 340px;
+	}
+
+	.weather-information-table-right {
+		display : inline-block;
+		vertical-align : top;
+		width : 340px;
+	}
+
+
+
+	.weather-future {
+		padding-top : 10px;
+		text-align : center;
+	}
+
+	.weather-future-left {
+		display : block;
+	}
+
+	.weather-future-right {
+		display : block;
+		padding-top : 15px;
+	}
+
+	.weather-future-symbol {
+		display : inline-block;
+		vertical-align : top;
+		width : 80px;
+	}
+
+	.weather-future-head {
+		font-weight : bold;
+		padding-bottom : 0;
+		text-align : center;
+	}
+
+	.weather-future-container {
+		text-align : center;
+	}
+
+	.weather-icon-image {
+		background-repeat : no-repeat;
+		background-position : center center;
+		height : 38px;
+		width : 80px;
+	}
+
+	.weather-icon-image-type {
+		background-repeat : no-repeat;
+		background-position : center center;
+		margin-top : 10px;
+		margin-left : 620px;
+		height : 38px;
+		position : absolute;
+		width : 38px;
+		z-index : 100;
+	}
+
+
+
+
+
+
+
+
+
+	/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+	/*
+	 * jquery-filestyle
+	 * http://dev.tudosobreweb.com.br/jquery-filestyle/
+	 *
+	 * Copyright (c) 2013 Markus Vinicius da Silva Lima
+	 * Version 0.1.3
+	 * Licensed under the MIT license.
+	 */
+	.jquery-filestyle {
+		display: inline-block;
+		*display: inline;
+		*zoom: 1;
+		margin: 0 0 10px;
+		padding: 0;
+	}
+
+
+	div.jquery-filestyle label,
+	div.jquery-filestyle input[type=text][disabled] {
+		font-family: sans-serif;
+	}
+
+	div.jquery-filestyle label {
+		margin-left : 10px;
+	}
+
+	div.jquery-filestyle label:hover {
+		cursor: pointer;
+	}
+
+
+
+
+
+
+
+
+
+
+	#aToolTip {
+		display : none;
+		position : absolute;
+		z-index : 50000;
+	}
+
+	#aToolTip .aToolTipContent {
+		margin : 0;
+		position : relative;
+		padding : 0;
+	}
+
+	.defaultTheme {
+		background-color : rgba(255, 255, 255, 0.95);
+		border : 1px solid #d1d1d1;
+		border-radius : 3px;
+		font-family : Tahoma;
+		font-size : 11px;
+		margin : 0;
+		padding : 5px 10px;
+	}
+
+
+}

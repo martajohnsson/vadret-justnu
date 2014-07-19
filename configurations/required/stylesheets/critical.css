@@ -1,0 +1,54 @@
+@font-face {
+	font-family : Roboto;
+	src : url(../../../files/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+	font-family : Roboto;
+	font-weight : bold;
+	src : url(../../../files/fonts/Roboto-Bold.ttf);
+}
+
+
+
+
+
+html {
+	min-height : 100%;
+	position : relative;
+	text-align : center;
+}
+
+body {
+	background-color : #ffffff;
+	color : #222222;
+	font-family : Roboto;
+	font-size : 12px;
+	margin : 50px auto;
+	line-height : 20px;
+	overflow-y : scroll;
+	text-align : justify;
+	width : 700px;
+}
+
+
+
+
+
+
+
+
+
+
+a {
+	color : #126da6;
+	padding : 1px;
+	text-decoration : underline;
+}
+
+
+
+.headline {
+	font-size : 18px;
+	padding-bottom : 10px;
+}
