@@ -174,7 +174,7 @@ var map_options;
 var marker;
 var place;
 var settings_timeout = 30000;
-var geolocator_options = { enableHighAccuracy: false, timeout: settings_timeout, maximumAge: 100 };
+var geolocator_options = { enableHighAccuracy: true, timeout: settings_timeout, maximumAge: 60000 };
 var start = true;
 var start_position;
 var latitude_start;
