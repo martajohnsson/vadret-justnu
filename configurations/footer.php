@@ -12,13 +12,13 @@
 	echo '<div class="footer">';
 
 		# COPYRIGHT
-		echo '<div class="footer-left">';
-			echo '&copy; '.date('Y');
+		echo '<div class="footer-copyright">';
+			echo 'Väderprognos från yr.no, levereras av Meteorologisk institutt och den norska Broadcasting Corporation';
 		echo '</div>';
 
 
 
-		echo '<div class="footer-right">';
+		echo '<div class="footer-links-left">';
 
 			# LÄNK: Om
 			echo '<a href="'.url('about').'" class="footer-link">';
@@ -45,7 +45,7 @@
 
 
 
-		echo '<div class="footer-sourcecode">';
+		echo '<div class="footer-links-right">';
 
 			# LÄNK: Visa källkod på GitHub
 			echo '<a href="https://github.com/edgren/vadret-justnu" class="footer-link">';
