@@ -64,8 +64,8 @@
 
 			$accuracy = isset($_GET['accuracy']) ? format_number($_GET['accuracy']).' meter' : '';
 			$accuracy_get = $_GET['accuracy'];
-			$direction = isset($_GET['heading']) ? ($_GET['heading'] == 0 ? '<span class="color-grey">0°</span>' : format_number($_GET['heading'], 1).'°') : '';
-			$speed = isset($_GET['speed']) ? ($_GET['speed'] == 0 ? '<span class="color-grey">0 km/h</span>' : format_number($_GET['speed'], 1).' km/h') : '';
+			$direction = isset($_GET['heading']) ? ($_GET['heading'] == 'null' ? '<span class="color-grey">0°</span>' : format_number($_GET['heading'], 1).'°') : '';
+			$speed = isset($_GET['speed']) ? ($_GET['speed'] == 'null' ? '<span class="color-grey">0 km/h</span>' : format_number($_GET['speed'], 1).' km/h') : '';
 			$distance = isset($_GET['distance']) ? format_number($_GET['distance'], 1).' kilometer' : '';
 			$address = (isset($_GET['address']) AND !empty($_GET['address'])) ? str_replace('|', ' ', $_GET['address']) : '';
 			$timestamp = domtimestamp_to_timestamp($_GET['timestamp']);
