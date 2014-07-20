@@ -12,6 +12,7 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Kunna rösta hur bra väderleksrapporten stämmer överrens med verkligheten
 - Lägga till ett alternativ, om att visa eller dölja spårning (dra linjer från där du började, till dit du är nu), när GPSn används
 - Kunna se noggrannheten på kartan, med hjälp av en rund ring runt om markören
+- Optimera tiden för sidladdningarna
 
 
 ### Vill du vara med och hjälpa till?
