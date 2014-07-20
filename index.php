@@ -70,7 +70,7 @@ $(document).ready(function() {
 		},
 
 		error: function(e) {
-			$('#content').html(message_error_page);
+			$('#content').html('<div class="message color-red">Kunde inte hämta den nödvändiga filen. Var god försök igen</div>');
 		}
 	});
 

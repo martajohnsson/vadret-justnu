@@ -11,34 +11,6 @@ $(document).ready(function() {
 	// TOOLTIP
 	$.getScript(folder_name + '/configurations/required/javascripts/javascript-tooltip.js');
 
-	// VARIABEL: Meddelande
-	message_loading_page = '<div class="message color-blue">Hämtar den önskade filen - var god vänta</div>';
-	message_loading_weather = '<div class="message color-blue">Hämtar väderleksrapporten - var god vänta</div>';
-	message_loading_chart = '<div class="message color-blue">Hämtar diagram - var god vänta</div>';
-	message_loading_temperature = '<div class="loading-temperature color-blue">+0º C</div>';
-	message_loading_help = '<div class="loading color-blue">Hämtar hjälpsektionen - var god vänta</div>';
-
-	message_gps_waiting = '<div class="message color-blue">Väntar på en eller flera signaler från enhetens GPS-mottagare</div>';
-
-	message_error_page = '<div class="message color-red">Kunde inte genomföra processen</div>';
-	message_error_gps = '<div class="message color-red">Kunde inte hitta din position</div>';
-	message_error_temperature = '<div class="loading-temperature-error color-grey-light">+0º C</div>';
-
-	// KLASSER
-	class_weather = '.weather';
-	class_weather_googlemaps = '.weather-googlemaps';
-	class_weather_chart = '.weather-chart';
-	class_google_maps_loader = '.google-maps-loader';
-	class_google_maps_loader_current = '.google-maps-loader-current';
-	class_google_maps_menu_gps = '.google-maps-menu-gps';
-	class_menu_temperature = '.menu-temperature';
-	class_overlay = '.overlay';
-	class_overlay_view = '.overlay-view';
-	class_overlay_content = '.overlay-content';
-	class_overlay_close = '.overlay-close';
-	class_error_gps = '.error-gps';
-	class_google_maps_address = '.google-maps-address';
-
 	// KLASSER
 	id_content = '#content';
 	id_help = '#help';
@@ -386,90 +358,6 @@ b.moveTo(g,p);b.lineTo(g,p-d*v(a.datasets[e].data[f],j,k)+c.barStrokeWidth/2);b.
  * Released under the MIT license
  */
 (function(a){if(typeof define==="function"&&define.amd){define(["jquery"],a)}else{if(typeof exports==="object"){a(require("jquery"))}else{a(jQuery)}}}(function(f){var a=/\+/g;function d(i){return b.raw?i:encodeURIComponent(i)}function g(i){return b.raw?i:decodeURIComponent(i)}function h(i){return d(b.json?JSON.stringify(i):String(i))}function c(i){if(i.indexOf('"')===0){i=i.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,"\\")}try{i=decodeURIComponent(i.replace(a," "));return b.json?JSON.parse(i):i}catch(j){}}function e(j,i){var k=b.raw?j:c(j);return f.isFunction(i)?i(k):k}var b=f.cookie=function(q,p,v){if(p!==undefined&&!f.isFunction(p)){v=f.extend({},b.defaults,v);if(typeof v.expires==="number"){var r=v.expires,u=v.expires=new Date();u.setTime(+u+r*86400000)}return(document.cookie=[d(q),"=",h(p),v.expires?"; expires="+v.expires.toUTCString():"",v.path?"; path="+v.path:"",v.domain?"; domain="+v.domain:"",v.secure?"; secure":""].join(""))}var w=q?undefined:{};var s=document.cookie?document.cookie.split("; "):[];for(var o=0,m=s.length;o<m;o++){var n=s[o].split("=");var j=g(n.shift());var k=n.join("=");if(q&&q===j){w=e(k,p);break}if(!q&&(k=e(k))!==undefined){w[j]=k}}return w};b.defaults={};f.removeCookie=function(j,i){if(f.cookie(j)===undefined){return false}f.cookie(j,"",f.extend({},i,{expires:-1}));return !f.cookie(j)}}));
-
-
-
-
-
-
-
-
-
-function str_replace(search, replace, subject, count) {
-  //  discuss at: http://phpjs.org/functions/str_replace/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Gabriel Paderni
-  // improved by: Philip Peterson
-  // improved by: Simon Willison (http://simonwillison.net)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Onno Marsman
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // bugfixed by: Anton Ongson
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Oleg Eremeev
-  //    input by: Onno Marsman
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Oleg Eremeev
-  //        note: The count parameter must be passed as a string in order
-  //        note: to find a global variable in which the result will be given
-  //   example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
-  //   returns 1: 'Kevin.van.Zonneveld'
-  //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
-  //   returns 2: 'hemmo, mars'
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
-  //   example 3: str_replace(Array('S','F'),'x','ASDFASDF');
-  //   returns 3: 'AxDxAxDx'
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca) Corrected count
-  //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt');
-  //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
-  //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
-  
-  var i = 0,
-    j = 0,
-    temp = '',
-    repl = '',
-    sl = 0,
-    fl = 0,
-    f = [].concat(search),
-    r = [].concat(replace),
-    s = subject,
-    ra = Object.prototype.toString.call(r) === '[object Array]',
-    sa = Object.prototype.toString.call(s) === '[object Array]';
-  s = [].concat(s);
-  
-  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
-    temp = replace; 
-    replace = new Array();
-    for (i=0; i < search.length; i+=1) { 
-      replace[i] = temp; 
-    }
-    temp = ''; 
-    r = [].concat(replace); 
-    ra = Object.prototype.toString.call(r) === '[object Array]';
-  }
-  
-  if (count) {
-    this.window[count] = 0;
-  }
-
-  for (i = 0, sl = s.length; i < sl; i++) {
-    if (s[i] === '') {
-      continue;
-    }
-    for (j = 0, fl = f.length; j < fl; j++) {
-      temp = s[i] + '';
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
-      s[i] = (temp)
-        .split(f[j])
-        .join(repl);
-      if (count) {
-        this.window[count] += ((temp.split(f[j])).length - 1);
-      } 
-    }
-  }
-  return sa ? s : s[0];
-}
 
 
 

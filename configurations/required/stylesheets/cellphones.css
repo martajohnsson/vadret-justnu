@@ -12,7 +12,7 @@
 		color : #222222;
 		font-family : Roboto;
 		font-size : 12px;
-		margin : 0 auto 100px auto;
+		margin : 0 auto 150px auto;
 		line-height : 20px;
 		overflow-y : scroll;
 		text-align : left;
@@ -664,8 +664,7 @@
 
 	.google-maps-loader {
 		background-color : #f9f9f9;
-		border : 5px solid #ffffff;
-		font-size : 14px;
+		border : 0;
 		height : 100px;
 		position : absolute;
 		text-align : center;
@@ -1291,6 +1290,10 @@
 	}
 
 
+
+	#view-chart {
+		height : 300px;
+	}
 
 	.weather-future {
 		padding-top : 10px;

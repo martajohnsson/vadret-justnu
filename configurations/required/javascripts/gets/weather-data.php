@@ -617,7 +617,7 @@
 						# 3 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+3 hours')).':00';
+								echo date('H', strtotime('+3 hours')).':00 (+3)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -636,7 +636,7 @@
 						# 6 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+6 hours')).':00';
+								echo date('H', strtotime('+6 hours')).':00 (+6)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -651,7 +651,7 @@
 						# 9 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+9 hours')).':00';
+								echo date('H', strtotime('+9 hours')).':00 (+9)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -666,7 +666,7 @@
 						# 12 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+12 hours')).':00';
+								echo date('H', strtotime('+12 hours')).':00 (+12)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -687,7 +687,7 @@
 						# 15 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+15 hours')).':00';
+								echo date('H', strtotime('+15 hours')).':00 (+15)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -702,7 +702,7 @@
 						# 18 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+18 hours')).':00';
+								echo date('H', strtotime('+18 hours')).':00 (+18)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -717,7 +717,7 @@
 						# 21 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+21 hours')).':00';
+								echo date('H', strtotime('+21 hours')).':00 (+21)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -732,7 +732,7 @@
 						# 24 TIMMAR
 						echo '<div class="weather-future-symbol">';
 							echo '<div class="weather-future-head">';
-								echo date('H', strtotime('+24 hours')).':00';
+								echo date('H', strtotime('+24 hours')).':00 (+24)';
 							echo '</div>';
 
 							echo '<div class="weather-future-container">';
@@ -847,7 +847,7 @@ $(document).ready(function() {
 		data: 'p=<?php echo implode(",", $data); ?>',
 
 		beforeSend: function(b) {
-			// $('#view-chart').html(message_loading_chart);
+			$('#view-chart').html('<div class="message color-blue">Hämtar diagrammet - var god vänta</div>');
 		},
 
 		success: function(s) {
@@ -855,7 +855,7 @@ $(document).ready(function() {
 		},
 
 		error: function(e) {
-			$('#view-chart').html(message_error_page);
+			$('#view-chart').html('<div class="message color-red">Kunde inte hämta diagrammet</div>');
 		}
 	});
 

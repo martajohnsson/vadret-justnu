@@ -676,7 +676,6 @@ input[type="checkbox"][disabled] {
 .google-maps-loader {
 	background-color : #f9f9f9;
 	border : 5px solid #ffffff;
-	font-size : 14px;
 	height : 100px;
 	position : absolute;
 	text-align : center;
@@ -1297,6 +1296,10 @@ input[type="checkbox"][disabled] {
 }
 
 
+
+#view-chart {
+	height : 300px;
+}
 
 .weather-future {
 	padding-top : 10px;
