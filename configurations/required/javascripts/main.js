@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 
 	// KAKA: Visa temperaturen i huvudmenyn
-	$('body').on('click', class_menu_temperature, function() {
+	$('body').on('click', '.menu-temperature', function() {
 
 		// SPLITTRA
 		var cookie_temperature = $.cookie(cookie_tempmenu);
@@ -145,6 +145,7 @@ function temp(value, unit) {
 
 
 
+/*
 function gm(lat, lng, id, saved) {
 
 	// VARIABLAR
@@ -271,6 +272,7 @@ function gm(lat, lng, id, saved) {
 	// }
 
 }
+*/
 
 
 

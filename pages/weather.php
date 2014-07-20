@@ -14,10 +14,6 @@
 		echo '<div id="google-maps"></div>';
 
 
-
-		# LADDAR: Väderleksrapporten
-		# echo '<div class="weather-loading-temperature"></div>';
-
 		# VÄDERLEKSRAPPORTEN
 		echo '<div id="weather-content"></div>';
 
@@ -149,7 +145,7 @@ function google_maps() {
 
 		// KONTROLL: Göm överlappningen, när kartan har laddats klart
 		if(map_loaded == true) {
-			$(class_google_maps_loader).fadeOut('slow');
+			$('.google-maps-loader').fadeOut('slow');
 		}
 
 	});
@@ -426,7 +422,7 @@ function google_maps() {
 
 		// KONTROLL: Göm överlappningen, när kartan har laddats klart
 		if(map_loaded == true) {
-			$(class_google_maps_loader).fadeOut('slow');
+			$('.google-maps-loader').fadeOut('slow');
 		}
 
 	});
