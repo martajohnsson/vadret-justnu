@@ -15,4 +15,4 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 
 
 ### Vill du vara med och hjälpa till?
-Du kan enkelt ladda hem filerna och arbeta med webbsidan lokalt, utan något stöd för databas.
+Du kan enkelt ladda hem filerna och arbeta med webbsidan lokalt, utan något stöd för någon databas. Se bara till att `$use_database` i `properties.php` är satt på `0`.
