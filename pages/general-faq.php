@@ -85,18 +85,6 @@
 		# FRÅGA & SVAR
 		echo '<div class="faq-body">';
 			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
-				echo 'Varför visar inte '.$sitename.' rätt väder?';
-			echo '</a>';
-
-			echo '<div class="faq-answer">';
-				echo '...';
-			echo '</div>';
-		echo '</div>';
-
-
-		# FRÅGA & SVAR
-		echo '<div class="faq-body">';
-			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
 				echo 'Vad för tjänst använder '.$sitename.' sig av?';
 			echo '</a>';
 
