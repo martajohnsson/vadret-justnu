@@ -174,7 +174,7 @@ var map_options;
 var marker;
 var place;
 var settings_timeout = 30000;
-var geolocator_options = { enableHighAccuracy: true, timeout: settings_timeout, maximumAge: 60000 };
+var geolocator_options = { enableHighAccuracy: true, timeout: settings_timeout, maximumAge: 10000 };
 var start = true;
 var start_position;
 var latitude_start;
@@ -365,14 +365,15 @@ $(document).ready(function() {
 
 		// LOKAL VARIABEL
 		var error = {
-			'User denied Geolocation': '<div class="headline">Du har nekat GPS-positioneringen</div>Du har valt att neka lokaliseringen av din nuvarande position. Om du ångrar ditt val, kan du ta bort ditt val i webbläsarens inställningar. Om du inte ångrar valet, kan du alltid gå till "Bestäm en plats" i huvudmenyn och välja en förbestämd plats, som du alltid kommer till vid ett återbesök, eller när du klickar på "' + sitename + '" i huvudmenyn.',
-			'PositionUnavailable': '<div class="headline">Positionen är för tillfället inte nåbar</div>' + sitename + ' kunde inte lokalisera din nuvarande position. Detta kan bero på följande:<ul><li>' + reason_3 + '</li><li>' + reason_2 + '</li></ul>Du kan testa att ladda om sidan. Om felet kvarstår, kan du se så att de möjliga anledningarna som listas ovan, är kollade. Om de är det och du fortfarande får felmeddelandet, så kan du <a href=' + folder_name + '/contact-us">skicka in en anmälan</a> om problemet. Under tiden kan du ange en bestämd plats, för att se väderleksrapporten för den önskade platsen. Detta gör du, genom att klicka på "Bestäm en plats" i huvudmenyn.',
-			'Timeout expired': '<div class="headline">Kunde inte lokalisera dig</div>' + sitename + ' försökte lokalisera din nuvarande plats, men det tog för lång tid. Detta kan bero på följande:<ul><li>' + reason_1 + '</li><li>' + reason_2 + '</li><li>' + reason_3 + '</li></ul>Om du känner att du får detta felmeddelandet väldigt ofta, hade det varit bra om du kunde <a href="' + folder_name + '/contact-us">skicka en felanmäla till oss</a>. Under tiden kan du ange en bestämd plats, för att se väderleksrapporten för den önskade platsen. Detta gör du, genom att klicka på "Bestäm en plats" i huvudmenyn.'
+			'User denied Geolocation': '<div class="content-paddingsides"><div class="headline">Du har nekat GPS-positioneringen</div>Du har valt att neka lokaliseringen av din nuvarande position. Om du ångrar ditt val, kan du ta bort ditt val i webbläsarens inställningar. Om du inte ångrar valet, kan du alltid gå till "Bestäm en plats" i huvudmenyn och välja en förbestämd plats, som du alltid kommer till vid ett återbesök, eller när du klickar på "' + sitename + '" i huvudmenyn.</div>',
+			'PositionUnavailable': '<div class="content-paddingsides"><div class="headline">Positionen är för tillfället inte nåbar</div>' + sitename + ' kunde inte lokalisera din nuvarande position. Detta kan bero på följande:<ul><li>' + reason_3 + '</li><li>' + reason_2 + '</li></ul>Du kan testa att ladda om sidan. Om felet kvarstår, kan du se så att de möjliga anledningarna som listas ovan, är kollade. Om de är det och du fortfarande får felmeddelandet, så kan du <a href=' + folder_name + '/contact-us">skicka in en anmälan</a> om problemet. Under tiden kan du ange en bestämd plats, för att se väderleksrapporten för den önskade platsen. Detta gör du, genom att klicka på "Bestäm en plats" i huvudmenyn.</div>',
+			'Timeout expired': '<div class="content-paddingsides"><div class="headline">Kunde inte lokalisera dig</div>' + sitename + ' försökte lokalisera din nuvarande plats, men det tog för lång tid. Detta kan bero på följande:<ul><li>' + reason_1 + '</li><li>' + reason_2 + '</li><li>' + reason_3 + '</li></ul>Om du känner att du får detta felmeddelandet väldigt ofta, hade det varit bra om du kunde <a href="' + folder_name + '/contact-us">skicka en felanmäla till oss</a>. Under tiden kan du ange en bestämd plats, för att se väderleksrapporten för den önskade platsen. Detta gör du, genom att klicka på "Bestäm en plats" i huvudmenyn.</div>',
+			'Position acquisition timed out': '<div class="content-paddingsides"><div class="headline">Kunde inte lokalisera dig</div>' + sitename + ' försökte lokalisera din nuvarande plats, men det tog för lång tid. Detta kan bero på följande:<ul><li>' + reason_1 + '</li><li>' + reason_2 + '</li><li>' + reason_3 + '</li></ul>Om du känner att du får detta felmeddelandet väldigt ofta, hade det varit bra om du kunde <a href="' + folder_name + '/contact-us">skicka en felanmäla till oss</a>. Under tiden kan du ange en bestämd plats, för att se väderleksrapporten för den önskade platsen. Detta gör du, genom att klicka på "Bestäm en plats" i huvudmenyn.</div>'
 		};
 
 
 		// HTML
-		$(class_weather).html(error[message]);
+		$('.weather').html(error[message]);
 
 	}
 
