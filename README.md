@@ -1,5 +1,5 @@
 # Vädret just nu
-=============
+
 **NOTE:** All the comments and content in the files are in Swedish, since this is a Swedish website
 
 Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst med prognoser från [yr.no](http://yr.no/). Webbsidan är fortfarande i utveckling och förbättringar genomförs och buggar täpps till emellanåt. Det som är "att göra"-listan, är följande.
