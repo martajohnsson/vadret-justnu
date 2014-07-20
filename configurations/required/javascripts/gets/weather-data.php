@@ -253,7 +253,7 @@
 			echo '</div>';
 
 			# TEMPERATUR
-			echo '<div class="weather-temperature-background" style="background-image: url('.url(FOLDER_WEATHER.'/NORMAL.jpg').');"></div>';
+			echo '<div class="weather-temperature-background" style="background-image: url('.url($folder_weather.'/NORMAL.jpg').');"></div>';
 			echo '<div class="weather-temperature" style="color: #'.temperature_color($temperature).';">';
 				echo temp($temperature, $temperature_unit);
 			echo '</div>';
@@ -847,7 +847,7 @@ $(document).ready(function() {
 		data: 'p=<?php echo implode(",", $data); ?>',
 
 		beforeSend: function(b) {
-			$('#view-chart').html(message_loading_chart);
+			// $('#view-chart').html(message_loading_chart);
 		},
 
 		success: function(s) {
