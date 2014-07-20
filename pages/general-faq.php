@@ -29,7 +29,7 @@
 			echo '</a>';
 
 			echo '<div class="faq-answer">';
-				echo 'Du kan få en bättre noggrannhet, genom att vara utomhus. Om du är inomhus, kommer inte satelliterna som lokaliserar din position, att kunna se dig lika lätt. Det tar därför oftast väldigt lång tid, innan din aktuella position kan hittas.';
+				echo 'Du kan få en bättre noggrannhet, genom att vara utomhus. Om du är inomhus, kommer inte satelliterna som lokaliserar din position, kunna se dig lika lätt. Det tar därför oftast väldigt lång tid, innan din aktuella position kan hittas. Noggrannheten kan då bli över 1 000 meter. Om du går ut istället, så kan noggrannheten bli mindre än 10 meter.';
 			echo '</div>';
 		echo '</div>';
 
@@ -61,7 +61,7 @@
 		# FRÅGA & SVAR
 		echo '<div class="faq-body">';
 			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
-				echo 'Varför är '.SITENAME.' öppen källkod?';
+				echo 'Varför är '.$sitename.' öppen källkod?';
 			echo '</a>';
 
 			echo '<div class="faq-answer">';
@@ -73,11 +73,47 @@
 		# FRÅGA & SVAR
 		echo '<div class="faq-body">';
 			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
-				echo 'Vad för kakor använder '.SITENAME.', och varför?';
+				echo 'Vad för kakor använder '.$sitename.', och varför?';
 			echo '</a>';
 
 			echo '<div class="faq-answer">';
-				echo 'De kakor (originellt kallat för cookies) som '.SITENAME.' använder sig av, är <b>vjn_startpage</b> och <b>vjn_tempmenu</b>. Den förstnämnda kakan ersätter startsidan med den förbestämda platsen. Den andra kakan visar temperaturen för den angivna platsen, i huvudmenyn.';
+				echo 'De kakor (originellt kallat för cookies) som '.$sitename.' använder sig av, är <b>vjn_startpage</b> och <b>vjn_tempmenu</b>. Den förstnämnda kakan ersätter startsidan med den förbestämda platsen. Den andra kakan visar temperaturen för den angivna platsen, i huvudmenyn.';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Varför visar inte '.$sitename.' rätt väder?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo '...';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Vad för tjänst använder '.$sitename.' sig av?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo $sitename.' hämtar väderleksrapporten och framtida rapporter, från <a href="http://yr.no/">yr.no</a>.';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Jag vill behålla min totala sträcka efter att sidan har laddats om. Går detta?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Nej. Den totala sträckan gäller endast när '.$sitename.' har en aktiv anslutning till din nuvarande position. Så fort du laddar om sidan eller går till en annan sida, kommer den totala sträckan att nollställas.';
 			echo '</div>';
 		echo '</div>';
 

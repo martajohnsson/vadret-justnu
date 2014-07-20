@@ -861,8 +861,8 @@ $(document).ready(function() {
 
 
 
-	<?php if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
-			 isset($_GET['t']) AND $_GET['t'] == 'coordinates') { ?>
+	<?php if(isset($_GET['t']) AND $_GET['t'] == 'gps' AND $use_database == 1 OR
+			 isset($_GET['t']) AND $_GET['t'] == 'coordinates' AND $use_database == 1) { ?>
 
 	// HÄMTA
 	$.ajax({
@@ -892,13 +892,13 @@ $(document).ready(function() {
 		}
 	});
 
-	<?php } else if(isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') { ?>
+	<?php } else if(isset($_GET['t']) AND $_GET['t'] == 'gps-traveler' AND $use_database == 1) { ?>
 
 	$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Väntar tills du har färdats 3 kilometer till</div>');
 
-	<?php } else { ?>
+	<?php } else if($use_database == 0) { ?>
 
-	$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">...</div>');
+	$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Databasen har inaktiverats - inget sparas</div>');
 
 	<?php } ?>
 

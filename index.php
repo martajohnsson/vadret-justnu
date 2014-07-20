@@ -17,7 +17,7 @@
 
 
 	# INKLUDERA
-	require FOLDER_CONFIGURATIONS.'/header.php';
+	require $folder_configurations.'/header.php';
 
 
 
@@ -34,7 +34,7 @@
 
 
 	# INKLUDERA
-	require FOLDER_CONFIGURATIONS.'/footer.php';
+	require $folder_configurations.'/footer.php';
 
 ?>
 

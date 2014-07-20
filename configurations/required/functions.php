@@ -2,8 +2,8 @@
 
 	# FUNKTION: Difinera den absoluta sökvägen
 	function url($string) {
-		if(strpos($string, ROOT_DIR) === false) {
-			$string = ROOT_DIR . $string;
+		if(strpos($string, $root) === false) {
+			$string = $root . $string;
 		}
 
 		return str_replace($_SERVER['DOCUMENT_ROOT'], '', $string);
@@ -320,98 +320,6 @@
 		} elseif($temperature >= 30) {
 			$string = 'cf1f25';
 		}
-
-
-		/*
-		# TEMPERATUR: Mellan -100 och -50
-		if($temperature >= -100 AND $temperature < -50) {
-			$string = '0000ac';
-
-		# TEMPERATUR: Mellan -50 och -35
-		} elseif($temperature >= -50 AND $temperature < -35) {
-			$string = '000088';
-
-		# TEMPERATUR: Mellan -35 och -30
-		} elseif($temperature >= -35 AND $temperature < -30) {
-			$string = '0000a0';
-
-		# TEMPERATUR: Mellan -30 och -25
-		} elseif($temperature >= -30 AND $temperature < -25) {
-			$string = '0000b8';
-
-		# TEMPERATUR: Mellan -25 och -20
-		} elseif($temperature >= -25 AND $temperature < -20) {
-			$string = '0000cf';
-
-		# TEMPERATUR: Mellan -20 och -15
-		} elseif($temperature >= -20 AND $temperature < -15) {
-			$string = '0000e7';
-
-		# TEMPERATUR: Mellan -15 och -10
-		} elseif($temperature >= -15 AND $temperature < -10) {
-			$string = '0000ff';
-
-		# TEMPERATUR: Mellan -10 och -5
-		} elseif($temperature >= -10 AND $temperature < -5) {
-			$string = '3131ff';
-
-		# TEMPERATUR: Mellan -5 och -3
-		} elseif($temperature >= -5 AND $temperature < -3) {
-			$string = '6262ff';
-
-		# TEMPERATUR: Mellan -3 och -1
-		} elseif($temperature >= -3 AND $temperature < -1) {
-			$string = '9393ff';
-
-		# TEMPERATUR: Mellan -1 och 0
-		} elseif($temperature >= -1 AND $temperature < 0) {
-			$string = 'c4c4ff';
-
-		# TEMPERATUR: Mellan 0 och +1
-		} elseif($temperature >= 0 AND $temperature < 1) {
-			$string = 'f5f5ff';
-
-		# TEMPERATUR: Mellan +1 och +3
-		} elseif($temperature >= 1 AND $temperature < 3) {
-			$string = 'ffffd2';
-
-		# TEMPERATUR: Mellan +3 och +5
-		} elseif($temperature >= 3 AND $temperature < 5) {
-			$string = 'ffff7e';
-
-		# TEMPERATUR: Mellan +5 och +10
-		} elseif($temperature >= 5 AND $temperature < 10) {
-			$string = 'ffff2a';
-
-		# TEMPERATUR: Mellan +10 och +15
-		} elseif($temperature >= 10 AND $temperature < 15) {
-			$string = 'ffdf00';
-
-		# TEMPERATUR: Mellan +15 och +20
-		} elseif($temperature >= 15 AND $temperature < 20) {
-			$string = 'ff9f00';
-
-		# TEMPERATUR: Mellan +20 och +25
-		} elseif($temperature >= 20 AND $temperature < 25) {
-			$string = 'ff6000';
-
-		# TEMPERATUR: Mellan +25 och +30
-		} elseif($temperature >= 25 AND $temperature < 30) {
-			$string = 'ff2000';
-
-		# TEMPERATUR: Mellan +30 och +35
-		} elseif($temperature >= 30 AND $temperature < 35) {
-			$string = 'ee0000';
-
-		# TEMPERATUR: Mellan +35 och +50
-		} elseif($temperature >= 35 AND $temperature < 50) {
-			$string = 'cc0000';
-
-		# TEMPERATUR: Över +50
-		} elseif($temperature > 50) {
-			$string = 'aa0000';
-		}
-		*/
 
 
 		return $string;

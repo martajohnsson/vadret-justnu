@@ -14,13 +14,13 @@
 
 
 <!--  TITEL  -->
-<title><?php echo SITENAME; ?></title>
+<title><?php echo $sitename; ?></title>
 
 <!--  FAVICON  -->
-<link rel="shortcut icon" href="<?php echo url(FOLDER_IMAGES.'/favicon.ico'); ?>">
+<link rel="shortcut icon" href="<?php echo url($folder_images.'/favicon.ico'); ?>">
 
 <!-- STILMALL -->
-<link href="<?php echo url(FOLDER_STYLESHEETS.'/critical.css'); ?>" type="text/css" rel="stylesheet">
+<link href="<?php echo url($folder_stylesheets.'/critical.css'); ?>" type="text/css" rel="stylesheet">
 
 <!-- META -->
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">

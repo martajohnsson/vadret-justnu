@@ -13,28 +13,26 @@
 	ini_set('error_reporting', E_ALL & ~E_NOTICE);
 	date_default_timezone_set('Europe/Stockholm');
 
-	# KONFIGURATION: Ange root-katalogen
-	define('ROOT_DIR', rtrim($_SERVER['DOCUMENT_ROOT'], '').'/');
+	# VARIABEL: Ange root-katalogen
+	$root = rtrim($_SERVER['DOCUMENT_ROOT'], '').'/vadret-justnu/';
 
-	# DEFINIERING: Aktuellt filnamn
+	# VARIABLAR: Aktuellt filnamn
 	$path = explode('/', $_SERVER['PHP_SELF']);
 	$filename = $path[count($path) - 1];
 
-	# DEFINIERING: Hämta innehållet i GET
+	# VARIABLAR: Hämta innehållet i GET
 	$query = !empty($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : null;
 	$filename_get = !empty($query) ? $query : '-';
 
-	# KONFIGURATION: Webbsidans namn
-	define('SITENAME', 'Vädret just nu');
+	# VARIABEL: Webbsidans namn
+	$sitename = 'Vädret just nu';
 
-	# DEFINIERING: Sessionens användaruppgifter
-	define('SESSION_USERID', isset($_SESSION['userid']));
-
-	# DEFINIERING: Databasuppgifter
-	define('SQL_HOST', 'localhost');
-	define('SQL_DATABASE', '');
-	define('SQL_USERNAME', 'root');
-	define('SQL_PASSWORD', '');
+	# VARIABLAR: Databashantering
+	$use_database = 0;
+	$sql_host = 'localhost';
+	$sql_database = '';
+	$sql_username = 'root';
+	$sql_password = '';
 
 
 
@@ -42,35 +40,30 @@
 
 
 
-	# KATALOGER
-	define('FOLDER_CONFIGURATIONS', ROOT_DIR.'configurations');
-		define('FOLDER_REQUIRED', ROOT_DIR.'configurations/required');
-			define('FOLDER_JAVASCRIPTS', ROOT_DIR.'configurations/required/javascripts');
-				define('FOLDER_FORMS', ROOT_DIR.'configurations/required/javascripts/forms');
-				define('FOLDER_GETS', ROOT_DIR.'configurations/required/javascripts/gets');
+	# VARIABLAR: Kataloger
+	$folder_configurations = $root.'configurations';
+		$folder_required = $root.'configurations/required';
+			$folder_javascripts = $root.'configurations/required/javascripts';
+				$folder_forms = $root.'configurations/required/javascripts/forms';
+				$folder_gets = $root.'configurations/required/javascripts/gets';
+				$folder_source = $root.'configurations/required/javascripts/source';
 
-			define('FOLDER_STYLESHEETS', ROOT_DIR.'configurations/required/stylesheets');
-			define('FOLDER_WIDEIMAGE', ROOT_DIR.'configurations/required/wideimage');
-
-
-	define('FOLDER_FILES', ROOT_DIR.'files');
-		define('FOLDER_FONTS', ROOT_DIR.'files/fonts');
+			$folder_stylesheets = $root.'configurations/required/stylesheets';
 
 
-	define('FOLDER_IMAGES', ROOT_DIR.'images');
-		define('FOLDER_ANIMATIONS', ROOT_DIR.'images/animations');
-		define('FOLDER_BACKGROUNDS', ROOT_DIR.'images/backgrounds');
-			define('FOLDER_WEATHER', ROOT_DIR.'images/backgrounds/weather');
+	$folder_files = $root.'files';
+		$folder_fonts = $root.'files/fonts';
 
-		define('FOLDER_ICONS', ROOT_DIR.'images/icons');
-			define('FOLDER_COLOR_128', ROOT_DIR.'images/icons/color-128');
-			define('FOLDER_COLOR_18', ROOT_DIR.'images/icons/color-18');
 
-		define('FOLDER_SMILEYS', ROOT_DIR.'images/smileys');
-		define('FOLDER_UPLOADED', ROOT_DIR.'images/uploaded');
-			define('FOLDER_AVATARS', ROOT_DIR.'images/uploaded/avatars');
-			define('FOLDER_BLOG', ROOT_DIR.'images/uploaded/blog');
-			define('FOLDER_STEAM', ROOT_DIR.'images/uploaded/steam');
+	$folder_images = $root.'images';
+		$folder_animations = $root.'images/animations';
+		$folder_backgrounds = $root.'images/backgrounds';
+			$folder_weather = $root.'images/backgrounds/weather';
+
+		$folder_icons = $root.'images/icons';
+			$folder_color_128 = $root.'images/icons/color-128';
+			$folder_color_18 = $root.'images/icons/color-18';
+			$folder_share = $root.'images/icons/share';
 
 
 
@@ -79,19 +72,11 @@
 
 
 	# INKLUDERA
-	require FOLDER_REQUIRED.'/functions.php';
-	require FOLDER_REQUIRED.'/sql-connect.php';
-	require FOLDER_REQUIRED.'/sql-databases.php';
+	require $folder_required.'/functions.php';
 
-
-
-	/** ** ** ** **    ** ** ** ** **/
-
-
-
-	# FORMULÄR
-	$textfield_subject = $_POST['textfield-subject'];
-	$textfield_subject_shorten = $_POST['textfield-subject-shorten'];
-	$textarea_content = $_POST['textfield-content'];
+	# KONTROLL: Använd databasen
+	if($use_database == 1) {
+		require $folder_required.'/sql-connect.php';
+	}
 
 ?>

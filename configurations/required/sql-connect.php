@@ -2,7 +2,7 @@
 
 	# ANSLUT
 	try {
-		$sql = new PDO('mysql:host='.SQL_HOST.';dbname='.SQL_DATABASE, SQL_USERNAME, SQL_PASSWORD);
+		$sql = new PDO('mysql:host='.$sql_host.';dbname='.$sql_database, $sql_username, $sql_password);
 		$sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 

@@ -35,7 +35,7 @@
 	if($check_existens == 0) {
 
 		echo '<div class="message color-blue">';
-			echo 'Här var det tomt! Klicka på "'.SITENAME.'" eller "Bestäm en plats" i huvudmenyn, för att lägga till data';
+			echo 'Här var det tomt! Klicka på "'.$sitename.'" eller "Bestäm en plats" i huvudmenyn, för att lägga till data';
 		echo '</div>';
 
 
