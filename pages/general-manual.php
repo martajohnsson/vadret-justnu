@@ -179,7 +179,7 @@ $(document).ready(function() {
 
 
 	// KLICK: Hämta den nuvarande positionen, med hjälp av GPS-mottagaren
-	$('body').on('click', class_google_maps_menu_gps, function() {
+	$('body').on('click', '.google-maps-menu-gps', function() {
 
 		// VISA
 		$('.google-maps-status').show();
