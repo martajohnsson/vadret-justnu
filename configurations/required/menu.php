@@ -4,7 +4,7 @@
 		echo '<div class="menu-image'.($filename_get == (isset($_COOKIE['vjn_startpage']) ? 'p=weather/manual/'.$_COOKIE['vjn_startpage'].'/start' : '-') ? ' menu-image-active' : '').'" id="menu" data="home'.(isset($_COOKIE['vjn_startpage']) ? '-coordinates' : '').'">';
 			echo '<i class="fa fa-clock-o"></i>';
 			echo '<div class="menu-image-text">';
-				echo SITENAME;
+				echo $sitename;
 			echo '</div>';
 		echo '</div>';
 	echo '</div>';
