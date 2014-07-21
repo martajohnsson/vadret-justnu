@@ -15,6 +15,7 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Optimera tiden för sidladdningarna
 - Lägga till ett meddelande, som berättar att enhetens GPS söker efter ens nuvarande plats. Just nu visas bara en grå ruta, som sedan ersätts av kartan. Detta meddelande ska endast visas när positioneringen sker. Aldrig medan webbsidan följer ens rörelse
 - Bättre hantering vid sparning av plats för varje väderleksrapport (databashantering)
+- Cacha väderleksrapporten
 
 
 ### Vill du vara med och hjälpa till?
