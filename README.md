@@ -40,3 +40,4 @@ dispatchOnMessage                      extensions::messaging:304
 ```
 
 - Detta är egentligen ingen bugg, men diagrammet för väderleksrapporten döljs när webbsidan har uppdaterat ens position. DIV-taggens höjd är densamma som diagrammet, så sidan hoppar inte längst ner, under tiden detta inträffar.
+- Appcache funkar inte som den ska. Detta beror på att jag inte vet exakt hur man ska göra, och har bara lagt till grunden.
