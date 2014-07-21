@@ -15,7 +15,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html manifest="<?php echo url('mainfest.appcache'); ?>">
 <head>
 
 
