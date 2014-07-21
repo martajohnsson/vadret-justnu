@@ -62,6 +62,7 @@ $(document).ready(function() {
 	$.ajax({
 		url: folder_name + '/get/weather/coordinates/' + place['latitude'] + ',' + place['longitude'] + '<?php echo isset($_GET["nolog"]) ? "/no-log" : ""; ?>',
 		type: ajax_type_get,
+		cache: true,
 		beforeSend: function() {
 			loading = setTimeout(function() {
 				$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Uppdaterar väderleksrapporten - var god vänta</div>');
@@ -262,6 +263,7 @@ $(document).ready(function() {
 			$.ajax({
 				url: folder_name + '/get/weather/gps/' + place['latitude'] + ',' + place['longitude'] + '/' + accuracy + '/' + heading + '/' + speed + '/' + distance + '/' + timestamp,
 				type: ajax_type_get,
+				cache: true,
 				beforeSend: function() {
 					loading = setTimeout(function() {
 						$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Uppdaterar väderleksrapporten - var god vänta</div>');
@@ -307,6 +309,7 @@ $(document).ready(function() {
 			$.ajax({
 				url: folder_name + '/get/weather/gps-traveler/' + place['latitude'] + ',' + place['longitude'] + '/' + accuracy + '/' + heading + '/' + speed + '/' + distance + '/' + timestamp,
 				type: ajax_type_get,
+				cache: true,
 				beforeSend: function() {
 					loading = setTimeout(function() {
 						$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Uppdaterar väderleksrapporten - var god vänta</div>');
