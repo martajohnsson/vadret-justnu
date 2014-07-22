@@ -15,30 +15,12 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Optimera tiden för sidladdningarna
 - Lägga till ett meddelande, som berättar att enhetens GPS söker efter ens nuvarande plats. Just nu visas bara en grå ruta, som sedan ersätts av kartan. Detta meddelande ska endast visas när positioneringen sker. Aldrig medan webbsidan följer ens rörelse
 - Bättre hantering vid sparning av plats för varje väderleksrapport (databashantering)
-- Cacha väderleksrapporten
+- Göra Vädret just nu snällare mot yr.nos server, som till exempel hämta aldrig hem ny data för en plats som redan finns i databasen, om inte datan är 30-45 minuter gammal.
 
 
 ### Vill du vara med och hjälpa till?
 Du kan enkelt ladda hem filerna och arbeta med webbsidan lokalt, utan något stöd för någon databas. Se bara till att `$use_database` i `properties.php` är satt på `0`.
 
 ### Kända buggar
-- Följande felmeddelande inträffar på alla sidor:
-```
-Error in event handler for extension.onRequest: undefined
-Stack trace: undefined                 extensions::uncaught_exception_handler:9
-handler                                extensions::uncaught_exception_handler:9
-exports.handle                         extensions::uncaught_exception_handler:15
-EventImpl.dispatch_                    extensions::event_bindings:384
-EventImpl.dispatch                     extensions::event_bindings:403
-publicClass.(anonymous function)       extensions::utils:89
-messageListener                        extensions::messaging:190
-EventImpl.dispatchToListener           extensions::event_bindings:397
-publicClass.(anonymous function)       extensions::utils:89
-EventImpl.dispatch_                    extensions::event_bindings:379
-EventImpl.dispatch                     extensions::event_bindings:403
-publicClass.(anonymous function)       extensions::utils:89
-dispatchOnMessage                      extensions::messaging:304
-```
-
 - Detta är egentligen ingen bugg, men diagrammet för väderleksrapporten döljs när webbsidan har uppdaterat ens position. DIV-taggens höjd är densamma som diagrammet, så sidan hoppar inte längst ner, under tiden detta inträffar.
 - Appcache funkar inte som den ska. Detta beror på att jag inte vet exakt hur man ska göra, och har bara lagt till grunden.
