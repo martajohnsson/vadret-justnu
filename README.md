@@ -16,6 +16,7 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Lägga till ett meddelande, som berättar att enhetens GPS söker efter ens nuvarande plats. Just nu visas bara en grå ruta, som sedan ersätts av kartan. Detta meddelande ska endast visas när positioneringen sker. Aldrig medan webbsidan följer ens rörelse
 - Bättre hantering vid sparning av plats för varje väderleksrapport (databashantering)
 - Göra Vädret just nu snällare mot yr.nos server, som till exempel hämta aldrig hem ny data för en plats som redan finns i databasen, om inte datan är 30-45 minuter gammal.
+- Lagra anonym information om besökarna. Varje besökare får själv avgöra om detta ska göras, eller inte
 
 
 ### Vill du vara med och hjälpa till?
