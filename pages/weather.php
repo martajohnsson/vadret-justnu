@@ -227,6 +227,39 @@ $(document).ready(function() {
 
 
 
+		if(speed > 10 && speed < 20) {
+			var distance_km = 5.0;
+
+		} else if(speed > 50 && speed < 70) {
+			var distance_km = 7.0;
+
+		} else if(speed > 70 && speed < 90) {
+			var distance_km = 9.0;
+
+		} else if(speed > 90 && speed < 110) {
+			var distance_km = 11.0;
+
+		} else if(speed > 110 && speed < 130) {
+			var distance_km = 13.0;
+
+		} else if(speed > 130 && speed < 150) {
+			var distance_km = 15.0;
+
+		} else if(speed > 150 && speed < 170) {
+			var distance_km = 17.0;
+
+		} else if(speed > 170 && speed < 190) {
+			var distance_km = 19.0;
+
+		} else if(speed > 190) {
+			var distance_km = 25.0;
+
+		} else {
+			var distance_km = 3.0;
+		}
+
+
+
 		// HÄMTA
 		$.ajax({
 			url: folder_name + '/get/address/' + place['latitude'] + ',' + place['longitude'] + '/' + street + '/' + postal_code + '/' + postal_town + '/' + neighborhood + '/' + city + '/' + county + '/' + country,
@@ -251,7 +284,7 @@ $(document).ready(function() {
 
 
 		// KONTROLL
-		if((calculate_distance(latitude_start, longitude_start, place['latitude'], place['longitude']).toFixed(1) >= 3.0) || start) {
+		if((calculate_distance(latitude_start, longitude_start, place['latitude'], place['longitude']).toFixed(1) >= distance_km) || start) {
 
 			// GLOBALA VARIABLAR
 			start = false;
@@ -307,33 +340,34 @@ $(document).ready(function() {
 
 			// HÄMTA
 			$.ajax({
-				url: folder_name + '/get/weather/gps-traveler/' + place['latitude'] + ',' + place['longitude'] + '/' + accuracy + '/' + heading + '/' + speed + '/' + distance + '/' + timestamp,
+				url: folder_name + '/get/weather/gps-traveler/' + accuracy + '/' + heading + '/' + speed + '/' + distance + '/' + timestamp,
 				type: ajax_type_get,
 				cache: true,
 				beforeSend: function() {
-					loading = setTimeout(function() {
-						$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Uppdaterar väderleksrapporten - var god vänta</div>');
-					}, 1000);
+					$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Väntar tills du har färdats 3 kilometer till</div>');
 				},
 
 
 
 				success: function(s) {
 
-					// TOOLTIP
-					$.getScript(folder_name + '/configurations/required/javascripts/javascript-tooltip.js');
+					// VARIABLAR
+					var array = s.split('|');
+					var accuracy_string = array[0].split('!');
+					var direction_string = array[1].split('!');
+					var speed_string = array[2].split('!');
+					var distance_string = array[3].split('!');
+					var address_string = array[4].split('!');
+					var timestamp_string = array[5].split('!');
 
-					// RENSA
-					clearInterval(loading);
 
-					// KONTROLL
-					if(s == 'no-coordinates') {
-						$('#weather-content').html('<div class="message color-red">Koordinaterna kunde inte hittas. Var god försök igen</div>');
-
-					// KONTROLL
-					} else {
-						$('#weather-content').html(s);
-					}
+					// HTML
+					$('#accuracy').html(accuracy_string[1]);
+					$('#direction').html(direction_string[1]);
+					$('#speed').html(speed_string[1]);
+					$('#distance').html(distance_string[1]);
+					$('#address').html(address_string[1]);
+					$('#timestamp').html(timestamp_string[1]);
 
 				},
 

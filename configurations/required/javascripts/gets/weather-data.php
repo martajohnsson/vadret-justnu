@@ -10,9 +10,36 @@
 
 
 	# KONTROLL: Koordinaterna existerar inte
-	if(empty($latitude) AND empty($longitude)) {
+	if(isset($_GET['t']) AND $_GET['t'] == 'gps' AND empty($latitude) AND empty($longitude)) {
 
 		echo 'no-coordinates';
+
+
+
+	# KONTROLL: Resande fot
+	} elseif(isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
+
+		$accuracy_string = isset($_GET['accuracy']) ? format_number($_GET['accuracy']).' meter' : '';
+		$accuracy = ($_GET['accuracy'] > 200 ? '<div class="icon icon-warning" title="Noggrannheten är '.($_GET['accuracy'] >= 1000 ? 'väldigt' : '').' dålig"></div>'.$accuracy_string : $accuracy_string);
+		$direction = isset($_GET['heading']) ? ($_GET['heading'] == 'null' ? '<span class="color-grey">0°</span>' : format_number($_GET['heading'], 1).'°') : '';
+		$speed = isset($_GET['speed']) ? ($_GET['speed'] == 'null' ? '<span class="color-grey">0 km/h</span>' : format_number($_GET['speed'], 1).' km/h') : '';
+		$distance = isset($_GET['distance']) ? format_number($_GET['distance'], 1).' kilometer' : '';
+		$address = (isset($_GET['address']) AND !empty($_GET['address'])) ? str_replace('|', ' ', $_GET['address']) : '';
+		$timestamp = domtimestamp_to_datetime($_GET['timestamp']);
+
+		$strings = Array('accuracy' => 'accuracy!'.(isset($_GET['accuracy']) ? $accuracy : 0),
+						 'direction' => 'direction!'.(isset($_GET['direction']) ? $direction : '<span class="color-grey">0°</span>'),
+						 'speed' => 'speed!'.(isset($_GET['speed']) ? $speed : '<span class="color-grey">0 km/h</span>'),
+						 'distance' => 'distance!'.(isset($_GET['distance']) ? $distance : 0),
+						 'address' => 'address!'.(isset($_GET['address']) ? $address : '-'),
+						 'timestamp' => 'timestamp!'.(isset($_GET['timestamp']) ? $timestamp : 0));
+
+		$test = Array();
+		foreach($strings AS $string) {
+			$test[] = $string;
+		}
+
+		echo implode('|', $test);
 
 
 
@@ -23,218 +50,231 @@
 		if(@simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude) AND
 		   @simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'))) {
 
-			# XML: Hämta väderprognosen
-			$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude);
-			$weather_sun = simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'));
+			if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+			   isset($_GET['t']) AND $_GET['t'] == 'coordinates') {
 
-			# KONFIGURATION: Hämta XML-data från Google TimeZone API
-			$timezone = simplexml_load_file('https://maps.googleapis.com/maps/api/timezone/xml?location='.$latitude.','.$longitude.'&timestamp=1331161200&sensor=false');
 
-			# VÄDERINFORMATION
-			$temperature = $weather_forecast->product->time->location->temperature['value'];
-			$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
-			$wind_direction = $weather_forecast->product->time->location->windDirection['name'];
-			$wind_direction_degrees = $weather_forecast->product->time->location->windDirection['deg'];
-			$wind_speed = format_number((string)$weather_forecast->product->time->location->windSpeed['mps'], 1).' mps';
-			$cloudiness = format_number((string)$weather_forecast->product->time->location->cloudiness['percent'], 1).'%';
-			$fog = format_number(str_replace('-', '', (string)$weather_forecast->product->time->location->fog['percent']), 1).'%';
-			$precipitation = !empty($weather_forecast->product->time[3]->location->precipitation['value']) ? format_number((string)$weather_forecast->product->time[3]->location->precipitation['value'], 1) : '';
-			$precipitation_unit = !empty($weather_forecast->product->time[3]->location->precipitation['unit']) ? ($weather_forecast->product->time[3]->location->precipitation['unit'] == 'mm' ? 'millimeter' : '') : '';
-			$precipitation_from = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->from));
-			$precipitation_to = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->to));
-			$precipitation_max = (string)$weather_forecast->product->time[3]->location->precipitation['maxvalue'];
-			$precipitation_min = (string)$weather_forecast->product->time[3]->location->precipitation['minvalue'];
-			$weather_symbol = $weather_forecast->product->time[3]->location->symbol['number'];
-			$weather_symbol_name = !empty($weather_forecast->product->time[3]->location->symbol['id']) ? $weather_forecast->product->time[3]->location->symbol['id'] : '';
+				# XML: Hämta väderprognosen
+				$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude);
+				$weather_sun = simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'));
 
-			$pressure = format_number((string)$weather_forecast->product->time->location->pressure['value'], 1);
-			$pressure_db = $weather_forecast->product->time->location->pressure['value'];
-			$pressure_unit = $weather_forecast->product->time->location->pressure['unit'];
-			$humidity = format_number((string)$weather_forecast->product->time->location->humidity['value'], 1);
-			$humidity_db = $weather_forecast->product->time->location->humidity['value'];
-			$humidity_unit = $weather_forecast->product->time->location->humidity['unit'];
-			$moon_phase = $weather_sun->time->location->moon['phase'];
-			$moonrise = date('H:i', strtotime($weather_sun->time->location->moon['rise'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
-			$moonset = date('H:i', strtotime($weather_sun->time->location->moon['set'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
-			$sunrise = date('H:i', strtotime($weather_sun->time->location->sun['rise'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
-			$sunset = date('H:i', strtotime($weather_sun->time->location->sun['set'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
+				# KONFIGURATION: Hämta XML-data från Google TimeZone API
+				$timezone = simplexml_load_file('https://maps.googleapis.com/maps/api/timezone/xml?location='.$latitude.','.$longitude.'&timestamp=1331161200&sensor=false');
 
-			$tmzone = ($timezone->raw_offset / 3600 -1);
-			$local_time = date('H:i', strtotime($tmzone.' hours')) . ($tmzone == 0 ? '' : '<div class="space space-small">|</div>'.preg_replace('/[\-]/', '', $tmzone).' timmar '.(strpos($tmzone, '-') !== false ? 'bakåt' : 'framåt'));
+				# VÄDERINFORMATION
+				$temperature = $weather_forecast->product->time->location->temperature['value'];
+				$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
+				$wind_direction = $weather_forecast->product->time->location->windDirection['name'];
+				$wind_direction_degrees = $weather_forecast->product->time->location->windDirection['deg'];
+				$wind_speed = format_number((string)$weather_forecast->product->time->location->windSpeed['mps'], 1).' mps';
+				$cloudiness = format_number((string)$weather_forecast->product->time->location->cloudiness['percent'], 1).'%';
+				$fog = format_number(str_replace('-', '', (string)$weather_forecast->product->time->location->fog['percent']), 1).'%';
+				$precipitation = !empty($weather_forecast->product->time[3]->location->precipitation['value']) ? format_number((string)$weather_forecast->product->time[3]->location->precipitation['value'], 1) : '';
+				$precipitation_unit = !empty($weather_forecast->product->time[3]->location->precipitation['unit']) ? ($weather_forecast->product->time[3]->location->precipitation['unit'] == 'mm' ? 'millimeter' : '') : '';
+				$precipitation_from = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->from));
+				$precipitation_to = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->to));
+				$precipitation_max = (string)$weather_forecast->product->time[3]->location->precipitation['maxvalue'];
+				$precipitation_min = (string)$weather_forecast->product->time[3]->location->precipitation['minvalue'];
+				$weather_symbol = $weather_forecast->product->time[3]->location->symbol['number'];
+				$weather_symbol_name = !empty($weather_forecast->product->time[3]->location->symbol['id']) ? $weather_forecast->product->time[3]->location->symbol['id'] : '';
 
-			$accuracy = isset($_GET['accuracy']) ? format_number($_GET['accuracy']).' meter' : '';
-			$accuracy_get = $_GET['accuracy'];
+				$pressure = format_number((string)$weather_forecast->product->time->location->pressure['value'], 1);
+				$pressure_db = $weather_forecast->product->time->location->pressure['value'];
+				$pressure_unit = $weather_forecast->product->time->location->pressure['unit'];
+				$humidity = format_number((string)$weather_forecast->product->time->location->humidity['value'], 1);
+				$humidity_db = $weather_forecast->product->time->location->humidity['value'];
+				$humidity_unit = $weather_forecast->product->time->location->humidity['unit'];
+				$moon_phase = $weather_sun->time->location->moon['phase'];
+				$moonrise = date('H:i', strtotime($weather_sun->time->location->moon['rise'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
+				$moonset = date('H:i', strtotime($weather_sun->time->location->moon['set'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
+				$sunrise = date('H:i', strtotime($weather_sun->time->location->sun['rise'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
+				$sunset = date('H:i', strtotime($weather_sun->time->location->sun['set'].' +'.($timezone->raw_offset / 3600 -1).' hour'));
+
+				$tmzone = ($timezone->raw_offset / 3600 -1);
+				$local_time = date('H:i', strtotime($tmzone.' hours')) . ($tmzone == 0 ? '' : '<div class="space space-small">|</div>'.preg_replace('/[\-]/', '', $tmzone).' timmar '.(strpos($tmzone, '-') !== false ? 'bakåt' : 'framåt'));
+
+				# XML: Hämta höjden över eller under havsytan
+				$elevation = simplexml_load_file('http://maps.googleapis.com/maps/api/elevation/xml?sensor=false&locations='.$latitude.','.$longitude);
+
+				$cloudiness_array = explode('.', $cloudiness);
+				$wind_direction_degrees_array = explode('.', $wind_direction_degrees);
+				$wind_speed_array = explode('.', $wind_speed);
+				$fog_array = explode('.', $fog);
+
+
+
+				# VÄDERLEK
+				$weather_type_array = Array('LIGHTCLOUD' => 'Lätt molnighet',
+											'PARTLYCLOUD' => 'Delvis molnighet',
+											'CLOUD' => 'Molnigt',
+											'LIGHTRAINSUN' => 'Delvis klart med lätt regn',
+											'LIGHTRAINTHUNDERSUN' => 'Delvis klart med lätt regn och åska',
+											'SLEETSUN' => 'Delvis klart med snöblandat regn',
+											'SNOWSUN' => 'Snö med sol',
+											'LIGHTRAIN' => 'Lätt regn',
+											'RAIN' => 'Regn',
+											'RAINTHUNDER' => 'Åska',
+											'SLEET' => 'Snöblandat',
+											'SNOW' => 'Snö',
+											'SNOWTHUNDER' => 'Snö med åska',
+											'FOG' => 'Dimma',
+											'SUN' => 'Klart',
+											'SLEETSTUNTHUNDER' => 'Delvis klart med snöblandat regn och åska',
+											'SNOWSUNTHUNDER' => 'Delvis klart med snö och åska',
+											'LIGHTRAINTHUNDER' => 'Lätt regn med åska',
+											'SLEETTHUNDER' => 'Snöblandat med regn och åska');
+
+
+
+				/** ** ** ** ** **/
+
+
+
+				# TEMPERATUR-LOOP
+				$i = 1;
+				$data = Array();
+
+				foreach($weather_forecast->product->time AS $temploop) {
+					$time = time();
+					if((string)$temploop['from'] == (string)$temploop['to']) {
+						$temp = $temploop->location->temperature['value'];
+						$temp_unit = $temploop->location->temperature['unit'];
+
+						$data[] = '{ label: "'.date('H', strtotime($temploop['from'])).':00", y: '.$temp.', meter: "'.(strpos($temp, '-') == '-' ? '' : '%2B').'", degrees: "'.($temp_unit == 'celcius' ? 'C' : 'F').'" }';
+						if($i++ == 25) break;
+					}
+				}
+
+
+
+				/** ** ** ** ** **/
+
+
+
+				# LOOP
+				foreach($weather_forecast->product->time AS $forecast) {
+
+					# KONTROLL: 3 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+3 hours'))) {
+						$weather_symbol_3h = $forecast->location->symbol['number'];
+						$weather_symbol_name_3h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+3 hours')) >= 22 OR date('H', strtotime('+3 hours')) <= 7) {
+							$weather_symbol_isnight_3h = 1;
+						} else {
+							$weather_symbol_isnight_3h = 0;
+						}
+					}
+
+
+					# KONTROLL: 6 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+6 hours'))) {
+						$weather_symbol_6h = $forecast->location->symbol['number'];
+						$weather_symbol_name_6h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+6 hours')) >= 22 OR date('H', strtotime('+6 hours')) <= 7) {
+							$weather_symbol_isnight_6h = 1;
+						} else {
+							$weather_symbol_isnight_6h = 0;
+						}
+					}
+
+
+					# KONTROLL: 9 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+9 hours'))) {
+						$weather_symbol_9h = $forecast->location->symbol['number'];
+						$weather_symbol_name_9h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+9 hours')) >= 22 OR date('H', strtotime('+9 hours')) <= 7) {
+							$weather_symbol_isnight_9h = 1;
+						} else {
+							$weather_symbol_isnight_9h = 0;
+						}
+					}
+
+
+					# KONTROLL: 12 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+12 hours'))) {
+						$weather_symbol_12h = $forecast->location->symbol['number'];
+						$weather_symbol_name_12h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+12 hours')) >= 22 OR date('H', strtotime('+12 hours')) <= 7) {
+							$weather_symbol_isnight_12h = 1;
+						} else {
+							$weather_symbol_isnight_12h = 0;
+						}
+					}
+
+
+					# KONTROLL: 15 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+15 hours'))) {
+						$weather_symbol_15h = $forecast->location->symbol['number'];
+						$weather_symbol_name_15h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+15 hours')) >= 22 OR date('H', strtotime('+15 hours')) <= 7) {
+							$weather_symbol_isnight_15h = 1;
+						} else {
+							$weather_symbol_isnight_15h = 0;
+						}
+					}
+
+
+					# KONTROLL: 18 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+18 hours'))) {
+						$weather_symbol_18h = $forecast->location->symbol['number'];
+						$weather_symbol_name_18h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+18 hours')) >= 22 OR date('H', strtotime('+18 hours')) <= 7) {
+							$weather_symbol_isnight_18h = 1;
+						} else {
+							$weather_symbol_isnight_18h = 0;
+						}
+					}
+
+
+					# KONTROLL: 21 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+21 hours'))) {
+						$weather_symbol_21h = $forecast->location->symbol['number'];
+						$weather_symbol_name_21h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+21 hours')) >= 22 OR date('H', strtotime('+21 hours')) <= 7) {
+							$weather_symbol_isnight_21h = 1;
+						} else {
+							$weather_symbol_isnight_21h = 0;
+						}
+					}
+
+
+					# KONTROLL: 24 timmar
+					if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+24 hours'))) {
+						$weather_symbol_24h = $forecast->location->symbol['number'];
+						$weather_symbol_name_24h = $forecast->location->symbol['id'];
+
+						if(date('H', strtotime('+24 hours')) >= 22 OR date('H', strtotime('+24 hours')) <= 7) {
+							$weather_symbol_isnight_24h = 1;
+						} else {
+							$weather_symbol_isnight_24h = 0;
+						}
+					}
+
+				}
+
+
+			}
+
+
+
+			/** ** ** ** ** ** ** ** **/
+
+
+
+			$accuracy_string = isset($_GET['accuracy']) ? format_number($_GET['accuracy']).' meter' : '';
+			$accuracy = ($_GET['accuracy'] > 200 ? '<div class="icon icon-warning" title="Noggrannheten är '.($_GET['accuracy'] >= 1000 ? 'väldigt' : '').' dålig"></div>'.$accuracy_string : $accuracy_string);
 			$direction = isset($_GET['heading']) ? ($_GET['heading'] == 'null' ? '<span class="color-grey">0°</span>' : format_number($_GET['heading'], 1).'°') : '';
 			$speed = isset($_GET['speed']) ? ($_GET['speed'] == 'null' ? '<span class="color-grey">0 km/h</span>' : format_number($_GET['speed'], 1).' km/h') : '';
 			$distance = isset($_GET['distance']) ? format_number($_GET['distance'], 1).' kilometer' : '';
 			$address = (isset($_GET['address']) AND !empty($_GET['address'])) ? str_replace('|', ' ', $_GET['address']) : '';
-			$timestamp = domtimestamp_to_timestamp($_GET['timestamp']);
-
-			# XML: Hämta höjden över eller under havsytan
-			$elevation = simplexml_load_file('http://maps.googleapis.com/maps/api/elevation/xml?sensor=false&locations='.$latitude.','.$longitude);
-
-			$cloudiness_array = explode('.', $cloudiness);
-			$wind_direction_degrees_array = explode('.', $wind_direction_degrees);
-			$wind_speed_array = explode('.', $wind_speed);
-			$fog_array = explode('.', $fog);
-
-
-
-			# VÄDERLEK
-			$weather_type_array = Array('LIGHTCLOUD' => 'Lätt molnighet',
-										'PARTLYCLOUD' => 'Delvis molnighet',
-										'CLOUD' => 'Molnigt',
-										'LIGHTRAINSUN' => 'Delvis klart med lätt regn',
-										'LIGHTRAINTHUNDERSUN' => 'Delvis klart med lätt regn och åska',
-										'SLEETSUN' => 'Delvis klart med snöblandat regn',
-										'SNOWSUN' => 'Snö med sol',
-										'LIGHTRAIN' => 'Lätt regn',
-										'RAIN' => 'Regn',
-										'RAINTHUNDER' => 'Åska',
-										'SLEET' => 'Snöblandat',
-										'SNOW' => 'Snö',
-										'SNOWTHUNDER' => 'Snö med åska',
-										'FOG' => 'Dimma',
-										'SUN' => 'Klart',
-										'SLEETSTUNTHUNDER' => 'Delvis klart med snöblandat regn och åska',
-										'SNOWSUNTHUNDER' => 'Delvis klart med snö och åska',
-										'LIGHTRAINTHUNDER' => 'Lätt regn med åska',
-										'SLEETTHUNDER' => 'Snöblandat med regn och åska');
-
-
-
-			/** ** ** ** ** **/
-
-
-
-			# TEMPERATUR-LOOP
-			$i = 1;
-			$data = Array();
-
-			foreach($weather_forecast->product->time AS $temploop) {
-				$time = time();
-				if((string)$temploop['from'] == (string)$temploop['to']) {
-					$temp = $temploop->location->temperature['value'];
-					$temp_unit = $temploop->location->temperature['unit'];
-
-					$data[] = '{ label: "'.date('H', strtotime($temploop['from'])).':00", y: '.$temp.', meter: "'.(strpos($temp, '-') == '-' ? '' : '%2B').'", degrees: "'.($temp_unit == 'celcius' ? 'C' : 'F').'" }';
-					if($i++ == 25) break;
-				}
-			}
-
-
-
-			/** ** ** ** ** **/
-
-
-
-			# LOOP
-			foreach($weather_forecast->product->time AS $forecast) {
-
-				# KONTROLL: 3 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+3 hours'))) {
-					$weather_symbol_3h = $forecast->location->symbol['number'];
-					$weather_symbol_name_3h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+3 hours')) >= 22 OR date('H', strtotime('+3 hours')) <= 7) {
-						$weather_symbol_isnight_3h = 1;
-					} else {
-						$weather_symbol_isnight_3h = 0;
-					}
-				}
-
-
-				# KONTROLL: 6 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+6 hours'))) {
-					$weather_symbol_6h = $forecast->location->symbol['number'];
-					$weather_symbol_name_6h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+6 hours')) >= 22 OR date('H', strtotime('+6 hours')) <= 7) {
-						$weather_symbol_isnight_6h = 1;
-					} else {
-						$weather_symbol_isnight_6h = 0;
-					}
-				}
-
-
-				# KONTROLL: 9 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+9 hours'))) {
-					$weather_symbol_9h = $forecast->location->symbol['number'];
-					$weather_symbol_name_9h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+9 hours')) >= 22 OR date('H', strtotime('+9 hours')) <= 7) {
-						$weather_symbol_isnight_9h = 1;
-					} else {
-						$weather_symbol_isnight_9h = 0;
-					}
-				}
-
-
-				# KONTROLL: 12 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+12 hours'))) {
-					$weather_symbol_12h = $forecast->location->symbol['number'];
-					$weather_symbol_name_12h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+12 hours')) >= 22 OR date('H', strtotime('+12 hours')) <= 7) {
-						$weather_symbol_isnight_12h = 1;
-					} else {
-						$weather_symbol_isnight_12h = 0;
-					}
-				}
-
-
-				# KONTROLL: 15 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+15 hours'))) {
-					$weather_symbol_15h = $forecast->location->symbol['number'];
-					$weather_symbol_name_15h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+15 hours')) >= 22 OR date('H', strtotime('+15 hours')) <= 7) {
-						$weather_symbol_isnight_15h = 1;
-					} else {
-						$weather_symbol_isnight_15h = 0;
-					}
-				}
-
-
-				# KONTROLL: 18 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+18 hours'))) {
-					$weather_symbol_18h = $forecast->location->symbol['number'];
-					$weather_symbol_name_18h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+18 hours')) >= 22 OR date('H', strtotime('+18 hours')) <= 7) {
-						$weather_symbol_isnight_18h = 1;
-					} else {
-						$weather_symbol_isnight_18h = 0;
-					}
-				}
-
-
-				# KONTROLL: 21 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+21 hours'))) {
-					$weather_symbol_21h = $forecast->location->symbol['number'];
-					$weather_symbol_name_21h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+21 hours')) >= 22 OR date('H', strtotime('+21 hours')) <= 7) {
-						$weather_symbol_isnight_21h = 1;
-					} else {
-						$weather_symbol_isnight_21h = 0;
-					}
-				}
-
-
-				# KONTROLL: 24 timmar
-				if(date('d H', strtotime((string)$forecast['from'])) == date('d H', strtotime('+24 hours'))) {
-					$weather_symbol_24h = $forecast->location->symbol['number'];
-					$weather_symbol_name_24h = $forecast->location->symbol['id'];
-
-					if(date('H', strtotime('+24 hours')) >= 22 OR date('H', strtotime('+24 hours')) <= 7) {
-						$weather_symbol_isnight_24h = 1;
-					} else {
-						$weather_symbol_isnight_24h = 0;
-					}
-				}
-
-			}
+			$timestamp = domtimestamp_to_datetime($_GET['timestamp']);
 
 
 
@@ -484,9 +524,11 @@
 								echo 'Hittade dig';
 							echo '</div>';
 
-							echo '<div class="table-cell-right weather-data-table-right">';
-								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
-									echo domtimestamp_to_datetime($_GET['timestamp']);
+							echo '<div class="table-cell-right weather-data-table-right" id="timestamp">';
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
+									echo $timestamp;
+
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
 								}
@@ -500,13 +542,9 @@
 								echo 'Noggrannhet';
 							echo '</div>';
 
-							echo '<div class="table-cell-right weather-data-table-right">';
+							echo '<div class="table-cell-right weather-data-table-right" id="accuracy">';
 								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
-									if($accuracy_get >= 200) {
-										echo '<div class="icon icon-warning" title="Noggrannheten är '.($accuracy_get >= 1000 ? 'väldigt' : '').' dålig"></div>'.$accuracy;
-									} else {
-										echo $accuracy;
-									}
+									echo $accuracy;
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
 								}
@@ -532,7 +570,7 @@
 								echo 'Färdriktning';
 							echo '</div>';
 
-							echo '<div class="table-cell-right weather-data-table-right">';
+							echo '<div class="table-cell-right weather-data-table-right" id="direction">';
 								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
 									echo $direction;
 								} else {
@@ -548,7 +586,7 @@
 								echo 'Färdhastighet';
 							echo '</div>';
 
-							echo '<div class="table-cell-right weather-data-table-right">';
+							echo '<div class="table-cell-right weather-data-table-right" id="speed">';
 								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
 									echo $speed;
 								} else {
@@ -564,7 +602,7 @@
 								echo 'Total sträcka';
 							echo '</div>';
 
-							echo '<div class="table-cell-right weather-data-table-right">';
+							echo '<div class="table-cell-right weather-data-table-right" id="distance">';
 								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
 									echo $distance;
 								} else {
@@ -892,7 +930,7 @@ $(document).ready(function() {
 		}
 	});
 
-	<?php } else if(isset($_GET['t']) AND $_GET['t'] == 'gps-traveler' AND $use_database == 1) { ?>
+	<?php } else if(isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') { ?>
 
 	$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Väntar tills du har färdats 3 kilometer till</div>');
 

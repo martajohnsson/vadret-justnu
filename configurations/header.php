@@ -15,7 +15,8 @@
 
 <!DOCTYPE html>
 
-<html manifest="<?php echo url('mainfest.appcache'); ?>">
+<!-- <html manifest="<?php echo url('offline-use.appcache'); ?>"> -->
+<html>
 <head>
 
 
