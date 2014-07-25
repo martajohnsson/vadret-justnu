@@ -8,7 +8,7 @@
 
 
 
-	# KONTROLL
+	# KONTROLL: IP-adressen existerar inte i databasen
 	if($check_ipexists == 0) {
 
 		# DATABAS (lägg till)
@@ -23,7 +23,7 @@
 
 
 
-	# KONTROLL
+	# KONTROLL: IP-adressen existerar redan i databasen
 	/*
 	} else {
 
