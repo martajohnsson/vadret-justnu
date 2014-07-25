@@ -77,6 +77,7 @@
 	# KONTROLL: Använd databasen
 	if($use_database == 1) {
 		require $folder_required.'/sql-connect.php';
+		require $folder_required.'/sql-databases.php';
 	}
 
 ?>
