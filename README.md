@@ -25,4 +25,4 @@ Du kan enkelt ladda hem filerna och arbeta med webbsidan lokalt, utan något st�
 ### Kända buggar
 - Detta är egentligen ingen bugg, men diagrammet för väderleksrapporten döljs när webbsidan har uppdaterat ens position. DIV-taggens höjd är densamma som diagrammet, så sidan hoppar inte längst ner, under tiden detta inträffar.
 - Appcache funkar inte som den ska. Detta beror på att jag inte vet exakt hur man ska göra, och har bara lagt till grunden.
-- Detta är kanske på min egna telefon (Samsung Galaxy S III Mini), men GPSn är väldigt efter, och när jag åker i 80-90 km/h, så visar den max 25 km/h.
+- Detta är kanske på min egna telefon (Samsung Galaxy S III Mini), men GPSn är väldigt efter, och när jag åker i 80-90 km/h, så visar den max 25 km/h, och den ligger efter med kanske 300 meter, även om noggrannheten är 5 meter.
