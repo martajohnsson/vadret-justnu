@@ -334,12 +334,12 @@
 		$temp = ($split[1] == 0 ? $split[0] : format_number($split[0].'.'.$split[1], 1));
 
 		if($wiki == true) {
-			# return (strpos($temp, '-') == '-' ? $temp : '+'.$temp).'<a href="http://sv.wikipedia.org/wiki/Gradtecken_(symbol)" target="_blank" title="Öppnas i en ny flik" class="temperature-link">°</a><label> </label>'.((empty($unit) OR $unit == '') ? '<a href="http://sv.wikipedia.org/wiki/Grad_Celsius" target="_blank" title="Öppnas i en ny flik" class="temperature-link">C</a>' : ($unit == 'celcius' ? '<a href="http://sv.wikipedia.org/wiki/Grad_Celsius" target="_blank" title="Öppnas i en ny flik" class="temperature-link">C</a>' : '<a href="http://sv.wikipedia.org/wiki/Farenheit" target="_blank" title="Öppnas i en ny flik" class="temperature-link">F</a>'));
+			# return (strpos($temp, '-') == '-' ? $temp : '+'.$temp).'<a href="http://sv.wikipedia.org/wiki/Gradtecken_(symbol)" target="_blank" title="Öppnas i en ny flik" class="temperature-link">°</a><label> </label>'.((empty($unit) OR $unit == '') ? '<a href="http://sv.wikipedia.org/wiki/Grad_Celsius" target="_blank" title="Öppnas i en ny flik" class="temperature-link">C</a>' : ($unit == 'celsius' ? '<a href="http://sv.wikipedia.org/wiki/Grad_Celsius" target="_blank" title="Öppnas i en ny flik" class="temperature-link">C</a>' : '<a href="http://sv.wikipedia.org/wiki/Farenheit" target="_blank" title="Öppnas i en ny flik" class="temperature-link">F</a>'));
 			return (strpos($temp, '-') == '-' ? $temp : '+'.$temp).
-				   '<span class="color-default">° '.((empty($unit) OR $unit == '') ? 'C' : ($unit == 'celcius' ? 'C' : 'F')).'</span>';
+				   '<span class="color-default">° '.((empty($unit) OR $unit == '') ? 'C' : ($unit == 'celsius' ? 'C' : 'F')).'</span>';
 
 		} elseif($wiki == false) {
-			return (strpos($temp, '-') == '-' ? $temp : '+'.$temp).'° '.((empty($unit) OR $unit == '') ? 'C' : ($unit == 'celcius' ? 'C' : 'F'));
+			return (strpos($temp, '-') == '-' ? $temp : '+'.$temp).'° '.((empty($unit) OR $unit == '') ? 'C' : ($unit == 'celsius' ? 'C' : 'F'));
 		}
 	}
 
