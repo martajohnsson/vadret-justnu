@@ -17,6 +17,7 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Bättre hantering vid sparning av plats för varje väderleksrapport (databashantering)
 - Göra Vädret just nu snällare mot yr.nos server, som till exempel hämta aldrig hem ny data för en plats som redan finns i databasen, om inte datan är 30-45 minuter gammal.
 - ~~Lagra anonym information om besökarna. Varje besökare får själv avgöra om detta ska göras, eller inte~~
+- Lägga till "känns som"-temperaturen. Kalkyleringen sker med följande formel: http://www.smhi.se/kunskapsbanken/meteorologi/vindens-kyleffekt-1.259
 
 
 ### Vill du vara med och hjälpa till?
