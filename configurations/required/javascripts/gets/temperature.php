@@ -19,20 +19,29 @@
 	# KONTROLL: Inga fel hittades
 	} else {
 
-		# XML: Hämta väderprognosen
-		$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude);
+		# KONTROLL: Solupp/nedgång och månupp/nedgång existerar
+		if(@simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude)) {
 
-		# VÄDERINFORMATION
-		$temperature = $weather_forecast->product->time->location->temperature['value'];
-		$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
+			# XML: Hämta väderprognosen
+			$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude);
 
-
-
-		/** ** ** ** ** ** ** ** **/
-
+			# VÄDERINFORMATION
+			$temperature = $weather_forecast->product->time->location->temperature['value'];
+			$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
 
 
-		echo temp($temperature, $temperature_unit);
+
+			/** ** ** ** ** ** ** ** **/
+
+
+
+			echo temp($temperature, $temperature_unit);
+
+		} else {
+
+			echo 'Error';
+
+		}
 
 	}
 
