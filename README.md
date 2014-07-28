@@ -20,6 +20,7 @@ Filerna ovan innehåller grunden för Vädret just nu, som är en vädertjänst 
 - Lägga till "känns som"-temperaturen. Kalkyleringen sker med följande formel: http://www.smhi.se/kunskapsbanken/meteorologi/vindens-kyleffekt-1.259
 - Göra så att Vädret just nu agerar enligt adress, gällande historik-sidan, uppladdning av bilder, röster och sånt, istället för koordinater
 - Lägga till mer data för just vädret. Till exempel, om man är ute på sjön, så ska man även kunna se hur vädret kommer att vara inom 24 timmar, enligt http://api.met.no/weatherapi/seaapproachforecast/1.0/documentation
+- Konvertera väderleksrapporten till en JPG- eller PNG-bild, för att kunna visa rapporten man såg vid en delning
 
 
 ### Vill du vara med och hjälpa till?
