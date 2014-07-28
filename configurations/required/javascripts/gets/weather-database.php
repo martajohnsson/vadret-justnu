@@ -20,14 +20,15 @@
 	} else {
 
 		# KONTROLL: Solupp/nedgång och månupp/nedgång existerar
-		if(@simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'))) {
+		if(@simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude) AND
+		   @simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'))) {
 
 			# INSTÄLLNINGAR: Längden på vänstertabellen
 			$table_left_width = 140;
 			$table_right_width = 160;
 
 			# XML: Hämta väderprognosen
-			$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude);
+			$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude);
 			$weather_sun = simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'));
 
 			# KONFIGURATION: Hämta XML-data från Google TimeZone API
@@ -35,6 +36,7 @@
 
 			# VÄDERINFORMATION
 			$temperature = $weather_forecast->product->time->location->temperature['value'];
+			$temperature_dewpoint = $weather_forecast->product->time->location->dewpointTemperature['value'];
 			$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
 			$wind_direction = $weather_forecast->product->time->location->windDirection['name'];
 			$wind_direction_degrees = $weather_forecast->product->time->location->windDirection['deg'];
@@ -77,6 +79,7 @@
 									   FROM coordinates
 									   WHERE data_coordinates = :coordinates
 									   AND data_temperature = :temperature
+									   AND data_temperature_dewpoint = :temperature_dewpoint
 									   AND data_pressure = :pressure
 									   AND data_humidity = :humidity
 									   AND data_weather = :weather
@@ -88,6 +91,7 @@
 
 									  ", Array('coordinates' => $latitude.','.$longitude,
 											   'temperature' => $temperature,
+											   'temperature_dewpoint' => $temperature_dewpoint,
 											   'pressure' => $pressure_db,
 											   'humidity' => $humidity_db,
 											   'weather' => $weather_symbol_name,
@@ -110,11 +114,8 @@
 												id_symbol,
 												data_coordinates,
 												data_temperature,
+												data_temperature_dewpoint,
 												data_temperature_unit,
-												data_accuracy,
-												data_altitude,
-												data_heading,
-												data_speed,
 												data_pressure,
 												data_pressure_unit,
 												data_humidity,
@@ -143,11 +144,8 @@
 							   :idsymbol,
 							   :coordinates,
 							   :temperature,
+							   :temperature_dewpoint,
 							   :temperature_unit,
-							   :accuracy,
-							   :altitude,
-							   :heading,
-							   :speed,
 							   :pressure,
 							   :pressure_unit,
 							   :humidity,
@@ -177,11 +175,8 @@
 								'idsymbol' => $weather_symbol,
 								'coordinates' => $latitude.','.$longitude,
 								'temperature' => $temperature,
+								'temperature_dewpoint' => $temperature_dewpoint,
 								'temperature_unit' => $temperature_unit,
-								'accuracy' => ((isset($_GET['t']) AND $_GET['t'] == 'coordinates') ? '' : $_GET['accuracy']),
-								'altitude' => ((isset($_GET['t']) AND $_GET['t'] == 'coordinates') ? '' : $_GET['altitude']),
-								'heading' => ((isset($_GET['t']) AND $_GET['t'] == 'coordinates') ? '' : ($_GET['heading'] == '' ? '0.0' : $_GET['heading'])),
-								'speed' => ((isset($_GET['t']) AND $_GET['t'] == 'coordinates') ? '' : ($_GET['speed'] == '' ? '0.0' : $_GET['speed'])),
 								'pressure' => $pressure_db,
 								'pressure_unit' => $pressure_unit,
 								'humidity' => $humidity_db,
@@ -220,6 +215,11 @@
 				echo 'weather-already-exists';
 
 			}
+
+		} else {
+
+			# VARIABEL: Status
+			echo 'weather-api-error';
 
 		}
 
