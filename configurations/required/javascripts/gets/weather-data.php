@@ -150,7 +150,7 @@
 						$temp = $temploop->location->temperature['value'];
 						$temp_unit = $temploop->location->temperature['unit'];
 
-						$data[] = '{ label: "'.date('H', strtotime($temploop['from'])).':00", y: '.$temp.', meter: "'.(strpos($temp, '-') == '-' ? '' : '%2B').'", degrees: "'.($temp_unit == 'celcius' ? 'C' : 'F').'" }';
+						$data[] = '{ label: "'.date('H', strtotime($temploop['from'])).':00", y: '.$temp.', meter: "'.(strpos($temp, '-') == '-' ? '' : '%2B').'", degrees: "'.($temp_unit == 'celsius' ? 'C' : 'F').'" }';
 						if($i++ == 25) break;
 					}
 				}
@@ -946,6 +946,9 @@ $(document).ready(function() {
 
 			} else if(s == 'weather-already-exists') {
 				$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Väderleksrapporten finns redan i databasen</div>');
+
+			} else if(s == 'weather-api-error') {
+				$('.weather-status-content').html('<div class="weather-status-content-left">' + current_datetime() + '</div><div class="weather-status-content-right">Kunde inte hämta väderleksrapporten</div>');
 			}
 		},
 
