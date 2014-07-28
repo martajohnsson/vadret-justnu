@@ -47,7 +47,7 @@
 	} else {
 
 		# KONTROLL: Solupp/nedgång och månupp/nedgång existerar
-		if(@simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude) AND
+		if(@simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude) AND
 		   @simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'))) {
 
 			if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
@@ -64,6 +64,8 @@
 				# VÄDERINFORMATION
 				$temperature = $weather_forecast->product->time->location->temperature['value'];
 				$temperature_unit = $weather_forecast->product->time->location->temperature['unit'];
+				$dewpoint_temperature = $weather_forecast->product->time->location->dewpointTemperature['value'];
+				$dewpoint_temperature_unit = $weather_forecast->product->time->location->dewpointTemperature['unit'];
 				$wind_direction = $weather_forecast->product->time->location->windDirection['name'];
 				$wind_direction_degrees = $weather_forecast->product->time->location->windDirection['deg'];
 				$wind_speed = format_number((string)$weather_forecast->product->time->location->windSpeed['mps'], 1).' mps';
@@ -73,8 +75,8 @@
 				$precipitation_unit = !empty($weather_forecast->product->time[3]->location->precipitation['unit']) ? ($weather_forecast->product->time[3]->location->precipitation['unit'] == 'mm' ? 'millimeter' : '') : '';
 				$precipitation_from = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->from));
 				$precipitation_to = gmdate('H:i', strtotime($weather_forecast->product->time[3]->attributes()->to));
-				$precipitation_max = (string)$weather_forecast->product->time[3]->location->precipitation['maxvalue'];
-				$precipitation_min = (string)$weather_forecast->product->time[3]->location->precipitation['minvalue'];
+				$precipitation_max = !empty($weather_forecast->product->time[3]->location->precipitation['maxvalue']) ? format_number((string)$weather_forecast->product->time[3]->location->precipitation['maxvalue'], 1).' '.(!empty($weather_forecast->product->time[3]->location->precipitation['unit']) ? ($weather_forecast->product->time[3]->location->precipitation['unit'] == 'mm' ? 'mm' : '') : '') : '';
+				$precipitation_min = !empty($weather_forecast->product->time[3]->location->precipitation['minvalue']) ? format_number((string)$weather_forecast->product->time[3]->location->precipitation['minvalue'], 1).' '.(!empty($weather_forecast->product->time[3]->location->precipitation['unit']) ? ($weather_forecast->product->time[3]->location->precipitation['unit'] == 'mm' ? 'mm' : '') : '') : '';
 				$weather_symbol = $weather_forecast->product->time[3]->location->symbol['number'];
 				$weather_symbol_name = !empty($weather_forecast->product->time[3]->location->symbol['id']) ? $weather_forecast->product->time[3]->location->symbol['id'] : '';
 
@@ -100,6 +102,14 @@
 				$wind_direction_degrees_array = explode('.', $wind_direction_degrees);
 				$wind_speed_array = explode('.', $wind_speed);
 				$fog_array = explode('.', $fog);
+
+
+
+				# KÄNNS SOM
+				$t = $temperature;
+				$v = $weather_forecast->product->time->location->windSpeed['mps'];
+
+				# echo 32.12 + (0.6215 * $t) - (13.956 * $v) + (0.48669 * $t * $v);
 
 
 
@@ -283,9 +293,9 @@
 
 
 			# VÄDERIKON
-			# if($weather_symbol_name != '') {
-				# echo '<div class="weather-icon-image-type" style="background-image: url(http://api.yr.no/weatherapi/weathericon/1.0/?symbol='.$weather_symbol.';is_night=0;content_type=image/png);" title="'.$weather_type_array["$weather_symbol_name"].'"></div>';
-			# }
+			if($weather_symbol_name != '') {
+				echo '<div class="weather-icon-image-type" style="background-image: url(http://api.yr.no/weatherapi/weathericon/1.0/?symbol='.$weather_symbol.';is_night=0;content_type=image/png);" title="'.$weather_type_array["$weather_symbol_name"].'"></div>';
+			}
 
 			# STATUS
 			echo '<div class="weather-status">';
@@ -325,6 +335,8 @@
 						echo '<div class="weather-information-block-text">';
 							if($precipitation != '') {
 								echo $precipitation.' '.$precipitation_unit.'<br>';
+								echo 'Max '.$precipitation_max.'<br>';
+								echo 'Min. '.$precipitation_min.'<br>';
 								echo $precipitation_from.' till '.$precipitation_to;
 							}
 						echo '</div>';
@@ -426,6 +438,18 @@
 
 							echo '<div class="table-cell-right weather-data-table-right color-grey">';
 								echo 'Kommer snart';
+							echo '</div>';
+						echo '</div>';
+
+
+						# TABELL: Daggpunktstemperatur
+						echo '<div class="table-row">';
+							echo '<div class="table-cell-left weather-data-table-left">';
+								echo 'Daggpunktstemperatur';
+							echo '</div>';
+
+							echo '<div class="table-cell-right weather-data-table-right">';
+								echo temp($dewpoint_temperature, $dewpoint_temperature_unit, false);
 							echo '</div>';
 						echo '</div>';
 

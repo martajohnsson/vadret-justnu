@@ -1342,12 +1342,12 @@ input[type="checkbox"][disabled] {
 .weather-icon-image-type {
 	background-repeat : no-repeat;
 	background-position : center center;
-	margin-top : 10px;
-	margin-left : 620px;
+	margin-top : 180px;
+	margin-left : 10px;
 	height : 38px;
 	position : absolute;
 	width : 38px;
-	z-index : 100;
+	z-index : 10000;
 }
 
 
