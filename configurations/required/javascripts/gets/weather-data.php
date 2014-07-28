@@ -55,7 +55,7 @@
 
 
 				# XML: Hämta väderprognosen
-				$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.8/?lat='.$latitude.';lon='.$longitude);
+				$weather_forecast = simplexml_load_file('http://api.yr.no/weatherapi/locationforecast/1.9/?lat='.$latitude.';lon='.$longitude);
 				$weather_sun = simplexml_load_file('http://api.yr.no/weatherapi/sunrise/1.0/?lat='.$latitude.';lon='.$longitude.';date='.date('Y-m-d'));
 
 				# KONFIGURATION: Hämta XML-data från Google TimeZone API
