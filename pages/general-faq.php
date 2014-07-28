@@ -49,6 +49,18 @@
 		# FRÅGA & SVAR
 		echo '<div class="faq-body">';
 			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'GPSn går inte igång när jag är på startsidan. Varför?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Detta kan bero på att du har tillåtit telefonen att hämta plats genom ett trådlöst nätverk, så som WiFi och mobila nätverk. Så fort du stänger av den här funktionen i enhetens systeminställningar, kommer enhetens GPS att kicka igång, när du besöker startsidan.';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
 				echo 'Jag vill ta bort temperaturen från huvudmenyn. Hur gör jag?';
 			echo '</a>';
 
@@ -78,6 +90,18 @@
 
 			echo '<div class="faq-answer">';
 				echo 'De kakor (originellt kallat för cookies) som '.$sitename.' använder sig av, är <b>vjn_startpage</b> och <b>vjn_tempmenu</b>. Den förstnämnda kakan ersätter startsidan med den förbestämda platsen. Den andra kakan visar temperaturen för den angivna platsen, i huvudmenyn.';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Varför visar inte '.$sitename.' rätt väder?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo '...';
 			echo '</div>';
 		echo '</div>';
 

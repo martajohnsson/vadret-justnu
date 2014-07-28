@@ -43,7 +43,7 @@
 		$headers = 'MIME-Version: 1.0' . "\r\n" .
 				   'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
 				   'To: Erik Edgren <nhagyavi@gmail.com>' . "\r\n" .
-				   'From: '.SITENAME.' <no-reply@erik-edgren.nu>' . "\r\n" .
+				   'From: '.$sitename.' <'.$_POST['textfield-email'].'>' . "\r\n" .
 				   'X-Mailer: PHP/'.phpversion();
 
 		mail('nhagyavi@gmail.com', $_POST['textfield-subject'], $_POST['textarea-message'], $headers);
