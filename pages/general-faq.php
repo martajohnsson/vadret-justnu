@@ -97,6 +97,19 @@
 		# FRÅGA & SVAR
 		echo '<div class="faq-body">';
 			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Hur inaktiverar jag GPS-positioneringen på startsidan?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Om du inte vill att '.$sitename.' ska ta reda på din aktuella position, så kan du först och främst neka förfrågan om att dela din position. Om du redan har gjort det, så kan du stänga av GPS-funktionen på din enhet. Du kan även gå till "Bestäm en plats" och kryssa i "Ersätt startsidan med den angivna platsen". Då kommer en kaka att skapas och läggas på din enhet. Varför gång du går till startsidan, kommer du att anlända till den bestämda platsen automatiskt, och enhetens GPS kommer då inte att användas.';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		/*
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
 				echo 'Varför visar inte '.$sitename.' rätt väder?';
 			echo '</a>';
 
@@ -104,6 +117,7 @@
 				echo '...';
 			echo '</div>';
 		echo '</div>';
+		*/
 
 
 		# FRÅGA & SVAR
