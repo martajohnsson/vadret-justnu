@@ -32,3 +32,4 @@ Du kan enkelt ladda hem filerna och arbeta med webbsidan lokalt, utan något st�
 - Detta är kanske på min egna telefon (Samsung Galaxy S III Mini), men GPSn är väldigt efter, och när jag åker i 80-90 km/h, så visar den max 25 km/h, och den ligger efter med kanske 300 meter, även om noggrannheten är 5 meter.
 - ~~När man ska använda GPS-positionering för startsidan, så startar inte GPSn väldigt ofta. Går man sen till "manuell"-sidan och klickar på "Använd GPS", så använder webbsidan enhetens GPS-mottagare och allt funkar som det ska.~~
 - Webbsidan lägger endast till platsens adress, när besökaren använder GPS-positionering.
+- Webbsidan hittar inte 24-timmarsöversikten om vädret på den angivna platsen, även om datan redan finns där
