@@ -573,7 +573,8 @@
 							echo '</div>';
 
 							echo '<div class="table-cell-right weather-data-table-right" id="accuracy">';
-								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
 									echo $accuracy;
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
@@ -601,7 +602,8 @@
 							echo '</div>';
 
 							echo '<div class="table-cell-right weather-data-table-right" id="direction">';
-								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
 									echo $direction;
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
@@ -617,7 +619,8 @@
 							echo '</div>';
 
 							echo '<div class="table-cell-right weather-data-table-right" id="speed">';
-								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
 									echo $speed;
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
@@ -633,8 +636,11 @@
 							echo '</div>';
 
 							echo '<div class="table-cell-right weather-data-table-right" id="distance">';
-								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR $_GET['t'] == 'gps-traveler') {
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
 									echo $distance;
+									# echo $distance != 0 ? '<div class="space space-tiny">-</div><a href="javascript:void(0)" id="reset-distance">Återställ</a>' : '';
+
 								} else {
 									echo '<span class="color-grey">Endast för GPS</span>';
 								}

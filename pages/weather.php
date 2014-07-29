@@ -227,8 +227,11 @@ $(document).ready(function() {
 
 
 
-		if(speed > 10 && speed < 20) {
+		if(speed > 10 && speed < 30) {
 			var distance_km = 5.0;
+
+		} else if(speed > 30 && speed < 50) {
+			var distance_km = 6.0;
 
 		} else if(speed > 50 && speed < 70) {
 			var distance_km = 7.0;

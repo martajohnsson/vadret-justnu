@@ -143,6 +143,54 @@
 			echo '</div>';
 		echo '</div>';
 
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Hur nollställer jag den totala sträckan som jag har färdats?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Den här funktionen är påväg. Var god håll ut tills den lanseras :)';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Varför existerar ens '.$sitename.'? Det är ju enkelt att ta reda på temperaturen och vädret.';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Självklart kan du titta på en termometer för att kolla på vädret, luftfuktighet och mer, samt titta ut för att se hur vädret är. Men varför betala flera hundralappar, om inte tusenlappar, på något som du inte kan ta med dig när du reser runt? '.$sitename.' visar temperatur, luftfuktighet, vindhastighet, vindriktning, lufttryck och mycket mer, och tjänster kostar absolut ingenting! Visst. Sådana här vädertjänster är oftast inte lika pålitliga som vad en egen väderstation är, men vilket föredrar du: att köpa en komplett väderstation som endast gäller för just ditt hem, eller en besöka vädertjänst som är helt kostnadsfritt, och som ger dig samma funktionalitet, som din egna väderstation?';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo $sitename.' visar fel väder och/eller temperatur. Varför?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Det är omöjligt för en vädertjänst, som går efter olika väderstationer, att veta hur till exempel den exakta temperaturen där du är just nu, är för tillfället. yr.no använder sig av <a href="http://www.hirlam.org/index.php/hirlam-programme-53">HIRLAM10</a>-modellen för att räkna ut vädret på över sju miljoner städer över hela världen. Du kan läsa mer om detta här: <a href="http://www.yr.no/informasjon/1.3687572">yr.no/informasjon/1.3687572</a>';
+			echo '</div>';
+		echo '</div>';
+
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Hur ofta uppdateras väderleksrapporten?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'För att '.$sitename.' inte ska vara för tung mot <a href="http://yr.no/">yr.no</a> servrar, kommer inte väderleksrapporten (temperatur, vinddata, molnighet, dimmtäcke och mer) att uppdateras förrän efter en viss sträcka. Följande lista visar när väderleksrapporten uppdateras, baserat på färdhastigheten:<br><ul><li>Under 10 km/h: efter 3 kilometer</li><li>Mellan 10 km/h och 30 km/h: efter 5 kilometer</li><li>Mellan 30 km/h och 50 km/h: efter 6 kilometer</li><li>Mellan 50 km/h och 70 km/h: efter 7 kilometer</li><li>Mellan 70 km/h och 90 km/h: efter 9 kilometer</li><li>Mellan 90 km/h och 110 km/h: efter 11 kilometer</li><li>Mellan 110 km/h och 130 km/h: efter 13 kilometer</li><li>Mellan 130 km/h och 150 km/h: efter 15 kilometer</li><li>Mellan 150 km/h och 170 km/h: efter 17 kilometer</li><li>Mellan 170 km/h och 190 km/h: efter 19 kilometer</li><li>Över 190 km/h: efter 25 kilometer</li></ul>Du kommer att få se ett meddelande ovanför temperaturen, som berättar när väderleksrapporten kommer att uppdateras nästa gång. Det finns dock data som uppdateras allt eftersom du rör på dig, och dessa är "Hittade dig", "Noggrannhet", "Höjd över/under havsytan", "Färdriktning", "Färdhastighet" och "Total sträcka".';
+			echo '</div>';
+		echo '</div>';
+
 	echo '</div>';
 
 ?>
