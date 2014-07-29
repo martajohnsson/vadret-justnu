@@ -542,10 +542,16 @@
 					# TABELL
 					echo '<div class="table">';
 
-						# TABELL: Hittade dig
+						# TABELL: Hittade dig / Senast uppdaterad
 						echo '<div class="table-row">';
 							echo '<div class="table-cell-left weather-data-table-left">';
-								echo 'Hittade dig';
+								if(isset($_GET['t']) AND $_GET['t'] == 'gps' OR
+								   isset($_GET['t']) AND $_GET['t'] == 'gps-traveler') {
+									echo 'Hittade dig';
+
+								} else {
+									echo 'Senast uppdaterad';
+								}
 							echo '</div>';
 
 							echo '<div class="table-cell-right weather-data-table-right" id="timestamp">';
@@ -554,7 +560,7 @@
 									echo $timestamp;
 
 								} else {
-									echo '<span class="color-grey">Endast för GPS</span>';
+									echo date('Y-m-d, H:i');
 								}
 							echo '</div>';
 						echo '</div>';
