@@ -191,6 +191,18 @@
 			echo '</div>';
 		echo '</div>';
 
+
+		# FRÅGA & SVAR
+		echo '<div class="faq-body">';
+			echo '<a href="javascript:void(0)" class="faq-link faq-question">';
+				echo 'Det står "Framtida väderprognoser kunde inte hittas på yr.no" under diagrammet. Varför?';
+			echo '</a>';
+
+			echo '<div class="faq-answer">';
+				echo 'Detta är en bugg som vi själva inte vet varför det blir så. Väderprognoserna existerar på XML-sidan på yr.nos API-sida. Förhoppningsvis får vi ordning på detta så fort som möjligt.';
+			echo '</div>';
+		echo '</div>';
+
 	echo '</div>';
 
 ?>
