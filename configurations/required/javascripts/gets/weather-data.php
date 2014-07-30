@@ -394,6 +394,15 @@
 						echo 'Bilder';
 					echo '</label>';
 
+					# ÖVRIGT: Mellanrum
+					echo '<div class="space space-small"></div>';
+
+					# MENY: Radar
+					echo '<a href="'.url('http://server-1.myftp.org/vadret-justnu/get/weather/geosatellite').'" target="_blank" class="weather-menu-link">';
+						echo '<i class="fa fa-location-arrow paddingright-5"></i>';
+						echo 'Radar';
+					echo '</a>';
+
 				echo '</div>';
 
 

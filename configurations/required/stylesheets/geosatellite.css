@@ -1,0 +1,154 @@
+@font-face {
+	font-family : Roboto;
+	src : url(../../../files/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+	font-family : Roboto;
+	font-weight : bold;
+	src : url(../../../files/fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+	font-family : Roboto Condensed Light;
+	src : url(../../../files/fonts/RobotoCondensed-Light.ttf);
+}
+
+
+
+
+
+html, body {
+	background-color : #ffffff;
+	color : #222222;
+	font-family : Roboto;
+	font-size : 12px;
+	height : 100%;
+	margin : 0;
+	line-height : 20px;
+	overflow-y : hidden;
+	padding : 0;
+	text-align : left;
+	width : 100%;
+}
+
+
+
+
+
+
+
+
+
+
+/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+
+a {
+	color : #126da6;
+	padding : 1px;
+	text-decoration : underline;
+}
+
+
+
+
+
+
+
+
+
+/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+.error-gps {
+	display : none;
+	padding-bottom : 40px;
+}
+
+.no-script {
+	margin : 100px auto 0 auto;
+	text-align : center;
+	width : 500px;
+}
+
+
+
+
+
+
+
+
+
+/** ************************************************** **/
+
+
+
+
+
+
+
+
+
+#google-maps-radar {
+	height : 100%;
+	width : 100%;
+}
+
+.google-maps-information {
+	background-color : #ffffff;
+	color : #373737;
+	cursor : default;
+	font-family : Tahoma;
+	font-size : 11px;
+	padding : 15px 0;
+	text-align : center;
+	width : 100%;
+
+	user-select : none;
+	-moz-user-select : none;
+	-khtml-user-select : none;
+	-webkit-user-select : none;
+	-webkit-user-drag : none;
+}
+
+
+
+.space {
+	color : #eaeaea;
+	cursor : default;
+	display : inline-block;
+	font-family : Verdana;
+
+	user-select : none;
+	-moz-user-select : none;
+	-khtml-user-select : none;
+	-webkit-user-select : none;
+	-webkit-user-drag : none;
+}
+
+.space-medium {
+	margin : 0 10px;
+}
+
+
+
+#error-gps {
+	display : none;
+	padding : 10px 15px;
+}

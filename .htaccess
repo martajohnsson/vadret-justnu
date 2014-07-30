@@ -7,10 +7,12 @@ AddDefaultCharset UTF-8
 DefaultLanguage sv-SE
 
 # KONFIGURATION: Alternativ
-Options -Indexes +FollowSymLinks -MultiViews
+Options All -Indexes
 
 # SKYDDA: Visning av filer
 IndexIgnore */*
+
+AddType text/cache-manifest .appcache
 
 # SKYDDA: .htaccess-filen
 <Files .htaccess>
@@ -94,8 +96,9 @@ IndexIgnore */*
 	RewriteRule ^get/weather/images/([\d\.\-]+),([\d\.\-]+)/no-log$    pages/weather-images.php?lat=$1&lng=$2&nolog= [L]
 	RewriteRule ^get/weather/temperature/([\d\.\-]+),([\d\.\-]+)$    configurations/required/javascripts/gets/temperature.php?lat=$1&lng=$2 [L]
 
+	RewriteRule ^get/weather/geosatellite$    configurations/required/javascripts/gets/weather-geosatellite.php [L]
 	RewriteRule ^get/weather/gps/([\d\.\-]+),([\d\.\-]+)/([a-z\d\.]+)/([a-z\d\.]+)/([a-z\d\.]+)/([\d\.]+)/([\d]+)$    configurations/required/javascripts/gets/weather-data.php?t=gps&lat=$1&lng=$2&accuracy=$3&heading=$4&speed=$5&distance=$6&timestamp=$7 [L]
-	RewriteRule ^get/weather/gps-traveler/([\d\.\-]+),([\d\.\-]+)/([a-z\d\.]+)/([a-z\d\.]+)/([a-z\d\.]+)/([\d\.]+)/([\d]+)$    configurations/required/javascripts/gets/weather-data.php?t=gps-traveler&lat=$1&lng=$2&accuracy=$3&heading=$4&speed=$5&distance=$6&timestamp=$7 [L]
+	RewriteRule ^get/weather/gps-traveler/([a-z\d\.]+)/([a-z\d\.]+)/([a-z\d\.]+)/([\d\.]+)/([\d]+)$    configurations/required/javascripts/gets/weather-data.php?t=gps-traveler&accuracy=$1&heading=$2&speed=$3&distance=$4&timestamp=$5 [L]
 	RewriteRule ^get/weather/coordinates/([\d\.\-]+),([\d\.\-]+)$    configurations/required/javascripts/gets/weather-data.php?t=coordinates&lat=$1&lng=$2 [L]
 	RewriteRule ^get/weather/coordinates/([\d\.\-]+),([\d\.\-]+)/no-log$    configurations/required/javascripts/gets/weather-data.php?t=coordinates&lat=$1&lng=$2&nolog= [L]
 	RewriteRule ^get/weather/chart/24-hours$    configurations/required/javascripts/gets/weather-24hour.php [L]
