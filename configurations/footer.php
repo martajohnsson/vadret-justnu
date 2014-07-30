@@ -41,6 +41,14 @@
 				echo 'Kontakta';
 			echo '</a>';
 
+			# ÖVRIGT: Mellanrum
+			echo '<div class="space space-small"></div>';
+
+			# LÄNK: Radarbild
+			echo '<a href="'.url('radar').'" target="_blank" class="footer-link">';
+				echo 'Radarbild';
+			echo '</a>';
+
 		echo '</div>';
 
 
